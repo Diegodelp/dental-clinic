@@ -1,0 +1,3554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/icoico.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <title>Dentalist-Gestion de Pacientes</title>
+    <style>
+                    body {
+                        font-family: 'Montserrat', sans-serif;
+                    }
+                    .seleccion{
+                        margin-left: -6px;
+                        margin-top: 5px;
+                        
+                    }
+                   
+                    input{
+                        text-align: center;
+                    }
+                
+
+                    input[type="checkbox"] {
+                    cursor: pointer;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    outline: 0;
+                    background: lightgray;
+                    height: 16px;
+                    width: 16px;
+                    border: 1px solid black;
+                    background: white;
+                    box-shadow: 0px 0px 3px 0px;
+                    }
+
+                    input[type="checkbox"]:checked {
+                    background: #2aa1c0;
+                    }
+
+                    .diente{
+                        position: relative;
+                        width: 0px;
+                        height: auto;
+                        margin-left: 50px;
+                        margin-top: -25px;
+                        display: inline-grid;
+                    }
+
+                    .cuadro{
+                        background-color: #FFFFFF;
+                        border: 1px solid #ccc;
+                        position: relative;
+                        width: 20px;
+                        height: 15px;
+                        left: -4px;
+                        -webkit-border-radius: 80px 80px 0px 15px;
+                        -moz-border-radius: 80px 80px 0px 15px;
+                        border-radius: 80px 80px 0px 15px;
+                        top: 40px;
+                    }
+                    .cuadro:hover{
+                        background:rgba(117, 198, 243, 0.4);
+                        cursor: pointer;
+                    }
+                    .izquierdo{
+                        top: 39px !important;
+                        left: -19px !important;
+                        -webkit-transform: rotate(270deg);
+                        -moz-transform: rotate(270deg);
+                        -ms-transform: rotate(270deg);
+                        -o-transform: rotate(270deg);
+                        transform: rotate(270deg);
+                    }
+                    .debajo{
+                        top: 38px !important;
+                        left: -4px !important;
+                        -webkit-transform: rotate(180deg);
+                        -moz-transform: rotate(180deg);
+                        -ms-transform: rotate(180deg);
+                        -o-transform: rotate(180deg);
+                        transform: rotate(180deg);
+                    }
+                    .derecha{
+                        top: 7px !important;
+                        left: 11px !important;
+                        -webkit-transform: rotate(90deg);
+                        -moz-transform: rotate(90deg);
+                        -ms-transform: rotate(90deg);
+                        -o-transform: rotate(90deg);
+                        transform: rotate(90deg);
+                    }
+                    .centro{
+                        background: #F3F3F3;
+                        border: 1px solid #ccc;
+                        width: 20px;
+                        height: 18px;
+                        top: -9px;
+                        left: -4px;
+                        position: relative;
+                    }
+                    .centro:hover{
+                        border: 1px solid rgba(117, 198, 243, 0.4);
+                        background-color:rgba(117, 198, 243, 0.4);
+                        cursor: pointer;
+                    }
+                    .color{
+                        width: 200px;
+                        height: 200px;
+                        position: relative;
+                        margin: 0 auto;
+                        padding: 3px;
+                    }
+                    .select{
+                        width: 40px;
+                        height: 40px;
+                        margin: 2px;
+                        background-color: #ccc;
+                        display: inline-block;
+                        cursor: pointer;
+                    }
+                    .select:hover{
+                        border: 1px solid rgba(117, 198, 243, 0.4);
+                    }
+                    .content{
+                        position: absolute;
+                    }
+                    .ui-dialog{
+                        position: relative !important;
+                    }
+                    .figure-caption{
+                    color: black
+                    }
+
+                
+            </style>
+</head>
+
+<body>
+    
+   
+<div >
+    <br>
+        <h2 style="text-align: center"><img src="image/ico.png" style="width:130px; text-align: center;"> Dentalist-Gestion de Pacientes</h2>
+        <hr>
+        <br>
+    
+</div>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-interval="false">
+    <div class="carousel-indicators" style="bottom: 50px;margin-bottom: 0px;">
+        <button style="width: auto; height: 30px; text-indent: 0; border: 0px solid black; padding: 5px; border-radius: 5px; background: #616a6a; color: white;"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-label="Slide 1">Datos Filiatorios</button>
+        <button style="width: auto; height: 30px; text-indent: 0; border: 0px solid black; padding: 5px; border-radius: 5px; background: #616a6a; color: white;"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">Enfermedades</button>
+        <button style="width: auto; height: 30px; text-indent: 0; border: 0px solid black; padding: 5px; border-radius: 5px; background: #616a6a; color: white;"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3">Odontograma</button>
+        <button style="width: auto; height: 30px; text-indent: 0; border: 0px solid black; padding: 5px; border-radius: 5px; background: #616a6a; color: white;"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4">Fotos</button>
+        <button style="width: auto; height: 30px; text-indent: 0; border: 0px solid black; padding: 5px; border-radius: 5px; background: #616a6a; color: white;"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5">Dignostico General</button>
+        <button style="width: auto; height: 30px; text-indent: 0; border: 0px solid black; padding: 5px; border-radius: 5px; background: #616a6a; color: white;"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6">Dignostico Ortodoncico 1</button>
+        <button style="width: auto; height: 30px; text-indent: 0; border: 0px solid black; padding: 5px; border-radius: 5px; background: #616a6a; color: white;"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7">Dignostico Ortodoncico 2</button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="d-block w-100" style="max-width: 1000px;text-align: center; margin: auto; background: #88c686; border-radius: 30px; box-shadow: 5px 10px 8px 10px #888888; border: solid 0px; margin-bottom: 50px;height: 650px;"><form class="row g-3" style="margin: 5px;">
+            <h3>Datos Filiatorios</h3>
+            <div class="col-md-3">
+                <label class="form-label">Fecha de Ingreso</label>
+                <input type="text" readonly class="form-control" id="inputFechaC" placeholder="Fecha de Consulta">
+              </div>
+            <div class="col-md-6">
+              <label class="form-label">Nombre y Apellido</label>
+              <input  type="text" readonly class="form-control" id="inputNombre" placeholder="Nombre y Apellido">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Sexo</label>
+                <input  type="text" readonly class="form-control" id="inputSexo" placeholder="Sexo">
+              </div>
+            <div class="col-md-6">
+                <label class="form-label">Direccion</label>
+                <input type="text" readonly class="form-control" id="inputDireccion" placeholder="Direccion">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Fecha de Nacimiento</label>
+                <input type="text" readonly class="form-control" id="inputFechaN" placeholder="Fecha de Nacimiento">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Telefono de Contacto</label>
+                <input type="text" readonly class="form-control" id="inputTelefono" placeholder="Telefono de contacto">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Obra Social</label>
+                <input type="text" readonly class="form-control" id="inputOSocial" placeholder="Obra Social">
+              </div>
+            <div class="col-md-6">
+              <label class="form-label">Motivo de Consulta</label>
+              <input type="text" readonly class="form-control" id="inputMotivo" placeholder="Motivo de Consulta">
+            </div>
+            
+            <h5 style="margin-top:40px">Otros Datos</h5>
+            <div class="col-md-6">
+                <label class="form-label">Bajo Tratamiento</label>
+                <input  type="text" readonly class="form-control" id="inputTratamiento" placeholder="Bajo Tratamientos">
+              </div>
+              <div class="col-md-6">
+                  <label class="form-label">Embarazo</label>
+                  <input type="text" readonly class="form-control" id="inputEmbarazo" placeholder="Embarazo">
+                </div>
+            </form>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="d-block w-100" style="max-width: 1000px;text-align: center; margin: auto; background: #88c686; border-radius: 30px; box-shadow: 5px 10px 8px 10px #888888; border: solid 0px; margin-bottom: 50px;height: 650px;"><form class="row g-3" style="margin: 5px;">
+    
+            <h3>Enfermedades</h3>
+            <div class="col-4">
+                <label  class="form-label">Enf. Respiratorias</label>
+                <input type="text" readonly class="form-control" id="inputRespiratoria" placeholder="Enf. Respiratorias">
+              </div>
+              <div class="col-4">
+                <label  class="form-label">Enf. Cardiacas</label>
+                <input type="text" readonly class="form-control" id="inputCardiaca" placeholder="Enf. Cardiacas">
+              </div>
+              <div class="col-4">
+                <label  class="form-label">Enf. Alergicas</label>
+                <input type="text" readonly class="form-control" id="inputAlergica" placeholder="Enf. Alergicas">
+              </div>
+              <div class="col-4">
+                  <label  class="form-label">Enf. Autoinmunes</label>
+                  <input type="text" readonly class="form-control" id="inputAutoinmune" placeholder="Enf. Autoinmunes">
+                </div>
+              <div class="col-4">
+                  <label  class="form-label">Enf. Renales</label>
+                  <input type="text" readonly class="form-control" id="inputRenal" placeholder="Enf. Renales">
+                </div>
+                <div class="col-4">
+                  <label class="form-label">Cirugias Previas</label>
+                  <input type="text" readonly class="form-control" id="inputCirugias" placeholder="Cirguias Previas">
+                </div>
+            </form>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="d-block w-100" style="max-width: 1000px;text-align: center; margin: auto; background: #88c686; border-radius: 30px; box-shadow: 5px 10px 8px 10px #888888; border: solid 0px; margin-bottom: 50px;height: 650px;"><form class="row g-3" style="margin: 5px;">
+            <h3>Odontograma</h3>
+            <button type="button" onclick="DesvanecerP()" style="background: none;border: none; height: 35px;">Denticion Permanente</button>
+            <div style="max-width: 950px;min-width: 900px; text-align: center; margin-left: -15px;">
+                <div id="div1" style="display: none; margin-top: -35px;">
+                
+                    <div class="diente">
+                    <input class="cuadro click" id="cuadrov18" type="checkbox" value="0">
+                    <input class="cuadro izquierdo click" id="cuadrod18" type="checkbox" value="0">
+                    <input class="cuadro debajo click" id="cuadrol18" type="checkbox" value="0">
+                    <input class="cuadro derecha click" id="cuadrom18" type="checkbox" value="0">
+                    <input class="centro click" id="cuadroo18" name="cuadroo18" type="checkbox" value="0">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">18</option>
+        
+                    </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov17" type="checkbox" value="0">
+                    <input class="cuadro izquierdo click" id="cuadrod17" type="checkbox" value="0">
+                    <input class="cuadro debajo click" id="cuadrol17" type="checkbox" value="0">
+                    <input class="cuadro derecha click" id="cuadrom17" type="checkbox" value="0">
+                    <input class="centro click" id="cuadroo17" type="checkbox" value="0">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">17</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov16" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrod16" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol16" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrom16" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo16" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">16</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov15" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrod15" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol15" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrom15" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo15" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">15</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov14" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrod14" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol14" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrom14" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo14" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">14</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov13" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrod13" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol13" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrom13" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo13" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">13</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov12" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrod12" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol12" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrom12" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo12" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">12</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov11" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrod11" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol11" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrom11" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo11" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">11</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov21" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom21" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol21" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod21" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo21" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">21</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov22" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom22" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol22" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod22" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo22" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">22</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov23" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom23" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol23" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod23" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo23" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">23</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov24" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom24" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol24" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod24" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo24" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">24</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov25" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom25" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol25" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod25" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo25" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">25</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov26" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom26" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol26" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod26" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo26" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">26</option>
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov27" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom27" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol27" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod27" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo27" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">27</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrov28" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom28" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrol28" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod28" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo28" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">28</option>
+        
+                  </div>
+                
+                
+                <br>
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol38" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom38" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov38" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod38" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo38" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">38</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol37" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom37" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov37" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod37" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo37" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">37</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol36" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom36" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov36" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod36" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo36" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">36</option>
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol35" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom35" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov35" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod35" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo35" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">35</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol34" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom34" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov34" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod34" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo34" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">34</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol33" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom33" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov33" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod33" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo33" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">33</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol32" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom32" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov32" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod32" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo32" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">32</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol31" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom31" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov31" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod31" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo31" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">31</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol41" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom41" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov41" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod41" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo41" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">41</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol42" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom42" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov42" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod42" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo42" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">42</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol43" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom43" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov43" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod43" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo43" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">43</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol44" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom44" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov44" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod44" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo44" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">44</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol45" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom45" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov45" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod45" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo45" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">45</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol46" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom46" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov46" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod46" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo46" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">46</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol47" type="checkbox" value="0">
+                    <input class="cuadro izquierdo click" id="cuadrom47" type="checkbox" value="0">
+                    <input class="cuadro debajo click" id="cuadrov47" type="checkbox" value="0">
+                    <input class="cuadro derecha click" id="cuadrod47" type="checkbox" value="0">
+                    <input class="centro click" id="cuadroo47" type="checkbox" value="0">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">47</option>
+        
+                  </div>
+                
+                
+                
+                
+                <div class="diente">
+                    <input class="cuadro click" id="cuadrol48" type="checkbox" value="1">
+                    <input class="cuadro izquierdo click" id="cuadrom48" type="checkbox" value="1">
+                    <input class="cuadro debajo click" id="cuadrov48" type="checkbox" value="1">
+                    <input class="cuadro derecha click" id="cuadrod48" type="checkbox" value="1">
+                    <input class="centro click" id="cuadroo48" type="checkbox" value="1">
+                    
+                    <br>
+                    <option id="cuadro7" class="seleccion" style="display: inline-block">48</option>
+                  </div>
+                  </div>
+                </div>
+                <br>
+                <button type="button" onclick="DesvanecerT()" style="background: none;border: none; height: 35px;">Denticion Temporaria</button>
+                <div style="max-width: 950px;min-width: 900px; text-align: center; margin-left: -15px;">
+                    
+                    <div id="div2" style="display: none; margin-top: -35px;" >
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov55" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrod55" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol55" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrom55" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo55" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">55</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov54" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrod54" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol54" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrom54" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo54" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">54</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov53" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrod53" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol53" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrom53" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo53" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">53</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov52" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrod52" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol52" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrom52" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo52" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">52</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov51" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrod51" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol51" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrom51" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo51" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">51</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov61" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom61" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol61" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod61" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo61" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">61</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov62" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom62" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol62" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod62" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo62" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">62</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov63" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom63" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol63" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod63" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo63" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">63</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov64" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom64" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol64" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod64" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo64" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">64</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrov65" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom65" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrol65" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod65" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo65" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">65</option>
+            
+                      </div>
+                    
+                    
+                    <br>
+                    
+                                                
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol75" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom75" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov75" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod75" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo75" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">75</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol74" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom74" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov74" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod74" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo74" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">74</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol73" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom73" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov73" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod73" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo73" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">73</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol72" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom72" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov72" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod72" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo72" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">72</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol71" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom71" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov71" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod71" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo71" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">71</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol81" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom81" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov81" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod81" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo81" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">81</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol82" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom82" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov82" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod82" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo82" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">82</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol83" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom83" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov83" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod83" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo83" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">83</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol84" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom84" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov84" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod84" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo84" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">84</option>
+            
+                      </div>
+                    
+                    
+                    
+                    
+                    <div class="diente">
+                        <input class="cuadro click" id="cuadrol85" type="checkbox" value="1">
+                        <input class="cuadro izquierdo click" id="cuadrom85" type="checkbox" value="1">
+                        <input class="cuadro debajo click" id="cuadrov85" type="checkbox" value="1">
+                        <input class="cuadro derecha click" id="cuadrod85" type="checkbox" value="1">
+                        <input class="centro click" id="cuadroo85" type="checkbox" value="1">
+                        
+                        <br>
+                        <option id="cuadro7" class="seleccion" style="display: inline-block">85</option>
+            
+                      </div>
+                    </div>
+                      <br>
+                <button type="button" onclick="DesvanecerO()" style="margin-left: 70px; background: none;border: none; height: 35px;">Observaciones</button>
+                <div class="mb-3" id="div3" style="display: none;">
+                    <textarea class="form-control" readonly id="inputObservaciones" style="margin-left: 35px; margin-top: -250px; z-index: 0; position: relative; height: 200px;" rows="4"></textarea>
+                </div>
+                <br>
+                    </div>
+            </form>
+            
+        </div>
+        
+      </div>
+      <div class="carousel-item">
+        <div class="d-block w-100" style="max-width: 1000px;text-align: center; margin: auto; background: #88c686; border-radius: 30px; box-shadow: 5px 10px 8px 10px #888888; border: solid 0px; margin-bottom: 50px;height: 650px;">
+            <form class="row g-3" style="margin: 5px;">
+            <h3>Fotos</h3>
+            <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem; display: inherit; margin-top: 10px;">
+                <div class="g-col-4" style="margin:10px">
+                    <figure class="figure" style="width: 70%;">
+                        <img src="..." class="figure-img img-fluid rounded" id="perfili" alt="...">
+                        <figcaption class="figure-caption">Perfil Izquierdo</figcaption>
+                    </figure>
+                </div>
+                <div class="g-col-4" style="margin:10px">
+                    <figure class="figure" style="width: 70%;">
+                        <img src="..." class="figure-img img-fluid rounded" id="cara" alt="...">
+                        <figcaption class="figure-caption">Foto de Frente</figcaption>
+                    </figure></div>
+                <div class="g-col-4" style="margin:10px">
+                    <figure class="figure" style="width: 70%;">
+                        <img src="..." class="figure-img img-fluid rounded" id="perfild" alt="...">
+                        <figcaption class="figure-caption">Perfil Derecho</figcaption>
+                    </figure>
+                </div>
+                <div class="g-col-4" style="margin:10px">
+                    <figure class="figure" style="width: 70%;">
+                        <img src="..." class="figure-img img-fluid rounded" id="oclusals" alt="...">
+                        <figcaption class="figure-caption">Oclusal Superior</figcaption>
+                    </figure>
+                </div>
+              </div>
+              <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem; display: inherit; margin-top: 10px;">
+                <div class="g-col-4" style="margin:10px">
+                    <figure class="figure" style="width: 70%;">
+                        <img src="..." class="figure-img img-fluid rounded" id="oclusali" alt="...">
+                        <figcaption class="figure-caption">Oclusal Inferior</figcaption>
+                    </figure>
+                </div>
+                <div class="g-col-4" style="margin:10px">
+                    <figure class="figure" style="width: 70%;">
+                        <img src="..." class="figure-img img-fluid rounded" id="laterali" alt="...">
+                        <figcaption class="figure-caption">Lateral Izquieda</figcaption>
+                    </figure></div>
+                <div class="g-col-4" style="margin:10px">
+                    <figure class="figure" style="width: 70%;">
+                        <img src="..." class="figure-img img-fluid rounded" id="frente" alt="...">
+                        <figcaption class="figure-caption">Central</figcaption>
+                    </figure>
+                </div>
+                <div class="g-col-4" style="margin:10px">
+                    <figure class="figure" style="width: 70%;">
+                        <img src="..." class="figure-img img-fluid rounded" id="laterald" alt="...">
+                        <figcaption class="figure-caption">Lateral Derecha</figcaption>
+                    </figure>
+                </div>
+              </div
+            </form>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="d-block w-100" style="max-width: 1000px;text-align: center; margin: auto; background: #88c686; border-radius: 30px; box-shadow: 5px 10px 8px 10px #888888; border: solid 0px; margin-bottom: 50px;height:750px;">
+            <form class="row g-3" style="margin: 5px; ">
+            <h3 style="padding-top: 20px;">Diagnostico General</h3>
+                <div id="div4" class="row" style="display: block; margin: 5px;margin-top: 30px;">
+                    <form class="row g-3">
+                        <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">Biotipo Facial</label>
+                            <input type="text" readonly class="form-control" id="inputBiotipo" placeholder="---">
+                          </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Habitos Parafuncionales</label>
+                            <input type="text" readonly class="form-control" id="inputHabito" placeholder="---">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Malposiciones Dentarias</label>
+                            <input type="text" readonly class="form-control" id="inputMPD" placeholder="---">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Alteraciones Interarcadas</label>
+                            <input type="text" readonly class="form-control" id="inputAI" placeholder="---">
+                        </div>
+                          </div>
+                          <br>
+                        <hr>
+                        <div class="row" style="margin-top: 20px; margin-bottom: 20px; ">
+                            <h5 style="margin-bottom: 20px;">Relacion Frontal</h5>
+                            <div class="col-md-3" >
+                                <label class="form-label">Entr. Perimetrico</label>
+                                <input type="text" readonly class="form-control" id="inputEP" placeholder="---">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Lineas Medias Dentales</label>
+                                <input  type="text" readonly class="form-control" id="inputLMD" placeholder="---">
+                            </div>
+                            <div class="col-md-3" style="margin-bottom: 30px;">
+                                <label class="form-label">Lineas Medias Faciales</label>
+                                <input  type="text" readonly class="form-control" id="inputLMF" placeholder="---">
+                            </div>
+                            <br>
+                            <hr>
+                            <h5>Relacion Vertical</h5>                            
+                            <div class="col-md-3">
+                                <label class="form-label">Overbite</label>
+                                <input type="text" readonly class="form-control" id="inputOverbite" placeholder="---">
+                                <br>
+                            </div>
+                            <hr>
+                            <h5 style="margin-bottom: 20px;">Relacion Sagital</h5>
+                            <div class="col-md-3">
+                                <label class="form-label" >Overjet</label>
+                                <input type="text" readonly class="form-control" id="inputOverjet" placeholder="Overjet">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Curva de Spee</label>
+                                <input type="text" readonly class="form-control" id="inputCS" placeholder="C. Spee">
+                            </div>  
+                            <div class="col-md-3">
+                                <label class="form-label">Clase Molar</label>
+                                <br>
+                                <label class="form-label" >Izquierda</label>
+                                <input type="text" readonly class="form-control" id="inputClaseMI" placeholder="Clase Izquieda">
+                                <label class="form-label" style="margin-top: 10px;">Derecha</label>
+                                <input type="text" readonly class="form-control"  style="margin-top: 3px;" id="inputClaseMD" placeholder="Clase Derecha">
+                            </div>
+                            <div class="col-md-3" >
+                                <label class="form-label">Clase Canina</label>
+                                <br>
+                                <label class="form-label" >Izquierda</label>
+                                <input type="text" readonly class="form-control" id="inputClaseCI" placeholder="Clase Izquierda">
+                                <label class="form-label" style="margin-top: 10px;">Derecha</label>
+                                <input type="text" readonly class="form-control" style="margin-top: 3px;" id="inputClaseCD" placeholder="Clase Derecha">
+                            </div>
+                        </div>
+                        </form>
+                </div>
+            
+            </form>
+      </div>
+    </div>
+    <div class="carousel-item">
+        <div class="d-block w-100" style="max-width: 1000px;text-align: center; margin: auto; background: #88c686; border-radius: 30px; box-shadow: 5px 10px 8px 10px #888888; border: solid 0px; margin-bottom: 50px;height: auto;">
+            <form class="row g-3" style="margin: 5px;">
+            <h3>Diagnostico Ortodoncico</h3>
+                <div id="div5" class="row" style="display: block; margin: 5px;">
+                    <form class="row g-3">
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-3" style="margin: auto;">
+                                <label class="form-label">Tipo de Denticion</label>
+                                <input id="denticion" type="text" readonly class="form-control" id="denticion" placeholder="Tipo de Denticion">
+                              </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="row">
+                            <h5>Analisis Transversal</h5>
+                        </div>
+                        <div class="row" id="atemporaria" style="margin-top: 20px; display: none;">
+                                <h6>Indice de Arcadas Temporarias</h6>
+                                <div class="col" style="border: solid 1px;border-radius: 10px;padding: 5px; margin: 5px;">
+                                    <label class="form-label">Superior</label>
+                                    <div class="row">
+                                        <div class="col-md-4"><label>Canino</label><input type="text" readonly class="form-control" id="caninots" placeholder="---"></div>
+                                        <div class="col-md-4"><label>1°Molar</label><input type="text" readonly class="form-control" id="molarts" placeholder="---"></div>
+                                        <div class="col-md-4"><label>2°Molar</label><input type="text" readonly class="form-control" id="2molarts" placeholder="---"></div>
+                                    </div>
+                                </div>
+                                <div class="col" style="border: solid 1px;border-radius: 10px;padding: 5px; margin: 5px;">
+                                    <label class="form-label">Inferior</label>
+                                    <div class="row">
+                                    <div class="col-md-4"><label>Canino</label><input type="text" readonly class="form-control" id="caninoti" placeholder="---"></div>
+                                    <div class="col-md-4"><label>1°Molar</label><input type="text" readonly class="form-control" id="molarti" placeholder="---"></div>
+                                    <div class="col-md-4"><label>2°Molar</label><input type="text" readonly class="form-control" id="2molarti" placeholder="---"></div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="row" id="amixta" style="margin-top: 20px; display: none;">
+                            <h6>Indice Martinez</h6>
+                            <div class="col" style="border: solid 1px;border-radius: 10px;padding: 5px; margin: 5px;">
+                                <label class="form-label">Superior</label>
+                                <div class="row">
+                                    <div class="col-md-4"><label>Canino</label><input type="text" readonly class="form-control" id="caninoms" placeholder="---"></div>
+                                    <div class="col-md-4"><label>1°Molar</label><input type="text" readonly class="form-control" id="molarms" placeholder="---"></div>
+                                    <div class="col-md-4"><label>2°Molar</label><input type="text" readonly class="form-control" id="2molarms" placeholder="---"></div>
+                                </div>
+                            </div>
+                            <div class="col" style="border: solid 1px;border-radius: 10px;padding: 5px; margin: 5px;">
+                                <label class="form-label">Inferior</label>
+                                <div class="row">
+                                <div class="col-md-4"><label>Canino</label><input type="text" readonly class="form-control" id="caninomi" placeholder="---"></div>
+                                <div class="col-md-4"><label>1°Molar</label><input type="text" readonly class="form-control" id="molarmi" placeholder="---"></div>
+                                <div class="col-md-4"><label>2°Molar</label><input type="text" readonly class="form-control" id="2molarmi" placeholder="---"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="apermanente" style="margin-top: 20px; display: none;">
+                            <h6>Indice de Ricketts</h6>
+                            <div class="col" style="border: solid 1px;border-radius: 10px;padding: 5px; margin: 5px;">
+                                <label class="form-label">Superior</label>
+                                <div class="row">
+                                    <div class="col-md-4"><label>Canino</label><input type="text" readonly class="form-control" id="caninops" placeholder="---"></div>
+                                    <div class="col-md-4"><label>1°Molar</label><input type="text" readonly class="form-control" id="molarps" placeholder="---"></div>
+                                    <div class="col-md-4"><label>2°Molar</label><input type="text" readonly class="form-control" id="2molarps" placeholder="---"></div>
+                                </div>
+                            </div>
+                            <div class="col" style="border: solid 1px;border-radius: 10px;padding: 5px; margin: 5px;">
+                                <label class="form-label">Inferior</label>
+                                <div class="row">
+                                <div class="col-md-4"><label>Canino</label><input type="text" readonly class="form-control" id="caninopi" placeholder="---"></div>
+                                <div class="col-md-4"><label>1°Molar</label><input type="text" readonly class="form-control" id="molarpi" placeholder="---"></div>
+                                <div class="col-md-4"><label>2°Molar</label><input type="text" readonly class="form-control" id="2molarpi" placeholder="---"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                    <div class="row" >
+                        <h5>Analisis Vertical</h5>
+                        <br>
+                        <h6>Profundidad del Paladar</h6>
+                        <div class="col-md-4" style="text-align: center;margin: auto;"><input type="text" readonly class="form-control" id="profundidadp" placeholder="---"></div>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="row" >
+                        <h5>Analisis de la Discrepancia</h5>
+                        <br>
+                        <h6>Discrepancia Dentoalveolar</h6>
+                        <div class="col-md-4" style="text-align: center;margin: auto;"><input type="text" readonly class="form-control" id="disdenal" placeholder="---"></div>
+                            
+                    </div>
+                </div>
+                </form>
+                </div>
+            
+            </form>
+      </div>
+      <div class="carousel-item">
+        <div class="d-block w-100" style="max-width: 1000px;text-align: center; margin: auto; background: #88c686; border-radius: 30px; box-shadow: 5px 10px 8px 10px #888888; border: solid 0px; margin-bottom: 50px;height: auto;">
+            <form class="row g-3" style="margin: 5px;">
+                <h3>Diagnostico Ortodoncico 2</h3>
+                <div id="div5" class="row" style="display: block; margin: 5px;">
+                    <div class="row" style="margin:auto;">
+                        <h5>Problemas Dentarios</h5>
+                        <div class="col-md-3" style="margin: auto;">
+                            <label class="form-label">Relacion Molar</label>
+                            <input type="text" readonly class="form-control" id="rmolar" placeholder="---" value="">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="clasemolar">
+                          </div>
+                        <div class="col-md-3" style="margin: auto;">
+                            <label class="form-label">Relacion Canina</label>
+                            <input type="text" readonly class="form-control" id="rcanina" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="clasecanina">
+                        </div>
+                        <div class="col-md-3" style="margin: auto;">
+                            <label class="form-label">Angulo Interincisivo</label>
+                            <input type="text" readonly class="form-control" id="anginter" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="angulointer">
+                        </div>
+                     </div>
+                     <br>
+                     <hr>
+                     <div class="row" style="margin:auto;">
+                        <h5>Problemas MaxiloMandibulares</h5>
+                        <div class="col-md-3" style="margin: auto;">
+                            <label class="form-label">Convexidad</label>
+                            <input type="text" readonly class="form-control" id="convexidad" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="convex">
+                          </div>
+                        <div class="col-md-3" style="margin: auto;">
+                            <label class="form-label">Altura Facial Inferior</label>
+                            <input type="text" readonly class="form-control" id="alturafacialinferior" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="alturafac">
+                        </div>
+                     </div>
+                     <br>
+                     <hr>
+                     <div class="row" style="margin:auto;">
+                        <h5>Problemas Esteticos</h5>
+                        <div class="col-md-3" style="margin: auto;">
+                            <label class="form-label">Protrusion Labial</label>
+                            <input type="text" readonly class="form-control" id="plabial" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="protrusionlabial">
+                          </div>
+                     </div>
+                     <br>
+                     <hr>
+                     <div class="row" style="margin:auto;">
+                        <h5>Problemas Craneofaciales</h5>
+                        <div class="col-md-3" ">
+                            <label class="form-label">Profundidad Facial</label>
+                            <input type="text" readonly class="form-control" id="pfacial" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="profacial">
+                          </div>
+                        <div class="col-md-3" ">
+                            <label class="form-label">Eje Facial</label>
+                            <input type="text" readonly class="form-control" id="ejefacial" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="ejefac">
+                        </div>
+                        <div class="col-md-3" ">
+                            <label class="form-label">Ang. Plano Manidibular</label>
+                            <input type="text" readonly class="form-control" id="angplanomandibular" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="angplano">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Profunidad Maxilar</label>
+                            <input type="text" readonly class="form-control" id="pmaxilar" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="profundidadmaxilar">
+                        </div>
+                        <div class="col-md-3" style="margin:auto; margin-bottom: 10px;">
+                            <label class="form-label">Altura Maxilar</label>
+                            <input type="text" readonly class="form-control" id="amaxilar" placeholder="---">
+                            <input type="text" style="background: none; border: none;" readonly class="form-control" id="alturamaxilar">
+                        </div>
+                     </div>
+                </div>
+            
+            </form>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div style="text-align:center;">
+    <form>
+        <input type="file" id="archivo" onchange="location.reload()">
+        <br><br>
+        <input type="text" id="archivos" value="Paciente">
+        <button type="button" style="float:center;margin: auto; border-color: #616a6a; background-color: #616a6a; margin-bottom: 0px; font-size: 18px; margin-left: 10px; margin-right: auto;"onclick="selecciona();" class="btn btn-primary">Seleccionar</button>
+        <button type="button" style="float:center;margin: auto; border-color: #616a6a; background-color: #616a6a; margin-bottom: 0px; font-size: 18px; margin-left: 10px; margin-right: auto;"onclick="actualizar();" class="btn btn-primary">Obtener Datos</button>
+      </form>
+      
+    
+    </div>
+<div style="margin-top: 150px;"><hr></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+<script>
+    function DesvanecerP(){
+      
+        $("#div1").fadeToggle();
+      };
+    
+      function DesvanecerT(){
+      
+      $("#div2").fadeToggle();
+    };
+
+    function DesvanecerO(){
+      
+      $("#div3").fadeToggle();
+    };  
+   
+    function DesvanecerDG(){
+      
+      $("#div4").fadeToggle();
+    }; 
+    function DesvanecerDO(){
+      
+      $("#div5").fadeToggle();
+    }; 
+
+    denticion = "Mixta";
+    document.getElementById("denticion").value = denticion;
+
+    if (denticion == "Temporaria"){
+        $("#atemporaria").fadeToggle();
+    }
+
+    if (denticion == "Mixta"){
+        $("#amixta").fadeToggle();
+    }
+
+    if (denticion == "Permanente"){
+        $("#apermanente").fadeToggle();
+    }
+    </script>
+
+<script>
+    function selecciona(){
+        archivo = document.getElementById("archivo").files[0].name
+        document.getElementById("archivos").value = archivo;
+        alert("Seleccionaste a "+nombre)
+        location.reload()
+
+    }
+    
+</script>
+    
+
+<script type="text/javascript">
+  archivo = document.getElementById("archivo").files[0].name
+  url = "/Desktop/ProgrmacionPhyton/consultorio/pacientes/grupopacientes/"+archivo
+  console.log(url)
+  
+
+  $.getJSON(url, function(data){
+            
+            
+            nombre = data.General.Paciente.Paciente;
+            sexo = data.General.Paciente.Sexo;
+            fecha = data.General.Paciente.Fecha_Consulta;
+            embarazo = data.General.Paciente.Embarazo;
+            tratamientos = data.General.Paciente.Tratamientos
+            telefono = data.General.Paciente.Telefono;
+            obrasocial = data.General.Paciente.Obra_Social;
+            direccion = data.General.Paciente.Direccion;
+            edad = data.General.Paciente.Fecha_Nacimiento;
+            motivo = data.General.Paciente.Motivo_de_Consulta;
+            observaciones = data.General.Paciente.Observaciones;
+            respiratoria = data.General.Paciente.Enf_Respiratorias;
+            cardiaca = data.General.Paciente.Enf_Cardiacas;
+            alergica = data.General.Paciente.Enf_Alergicas;
+            autoinmune = data.General.Paciente.Enf_Autoinmunes;
+            renal = data.General.Paciente.Enf_Renales;
+            cirugia = data.General.Paciente.Cirugias_Previas;
+            laterali = data.General.Paciente.Fotos.Lateral_Izquierda
+            laterald = data.General.Paciente.Fotos.Lateral_Derecha
+            frente = data.General.Paciente.Fotos.Frente
+            oclusali = data.General.Paciente.Fotos.Oclusal_Inferior
+            oclusals = data.General.Paciente.Fotos.Oclusal_Superior
+            cara = data.General.Paciente.Fotos.Cara
+            perfild = data.General.Paciente.Fotos.Perfil_Derecho
+            perfili = data.General.Paciente.Fotos.Perfil_Izquierdo
+            //Diagnostico General
+            biotipof = data.General.Paciente.Diagnostico.Biotipo_Facial
+            habitosp = data.General.Paciente.Diagnostico.Habitos_Parafuncionales
+            malposiciones = data.General.Paciente.Diagnostico.Malposiciones
+            alineacioni = data.General.Paciente.Diagnostico.Alineacion_Interarcada
+            entrecruzamiento = data.General.Paciente.Diagnostico.Entrecruzamiento
+            lineamd = data.General.Paciente.Diagnostico.Linea_Media_Dentaria
+            lineamf = data.General.Paciente.Diagnostico.Linea_Media_Facial
+            overbite = data.General.Paciente.Diagnostico.Overbite
+            overjet = data.General.Paciente.Diagnostico.Overjet
+            curvas = data.General.Paciente.Diagnostico.Curva_Spee
+            clasemi = data.General.Paciente.Diagnostico.Clase_Molar_Izquierda
+            clasemd = data.General.Paciente.Diagnostico.Clase_Molar_Derecha
+            claseci = data.General.Paciente.Diagnostico.Clase_Canina_Izquierda
+            clasecd = data.General.Paciente.Diagnostico.Clase_Canina_Derecha
+            //Diagnostico Ortodoncico
+            denticion = data.General.Paciente.Diagnostico.Denticion
+            caninots = data.General.Paciente.Diagnostico.I_arctemp_Cs
+            molarts = data.General.Paciente.Diagnostico.I_arctemp_1ms
+            molar2ts = data.General.Paciente.Diagnostico.I_arctemp_2ms
+            caninoti = data.General.Paciente.Diagnostico.I_arctemp_Ci
+            molarti = data.General.Paciente.Diagnostico.I_arctemp_1mi
+            molar2ti = data.General.Paciente.Diagnostico.I_arctemp_2mi
+
+            caninoms = data.General.Paciente.Diagnostico.I_m_Cs
+            molarms = data.General.Paciente.Diagnostico.I_m_1ms
+            molar2ms = data.General.Paciente.Diagnostico.I_m_2ms
+            caninomi = data.General.Paciente.Diagnostico.I_m_Ci
+            molarmi = data.General.Paciente.Diagnostico.I_m_1mi
+            molar2mi = data.General.Paciente.Diagnostico.I_m_2mi
+
+            caninops = data.General.Paciente.Diagnostico.I_rick_Cs
+            molarps = data.General.Paciente.Diagnostico.I_rick_1ms
+            molar2ps = data.General.Paciente.Diagnostico.I_rick_2ms
+            caninopi = data.General.Paciente.Diagnostico.I_rick_Ci
+            molarpi = data.General.Paciente.Diagnostico.I_rick_1mi
+            molar2pi = data.General.Paciente.Diagnostico.I_rick_2mi
+
+            profpaladar = data.General.Paciente.Diagnostico.Prof_Paladar
+            discrepancia = data.General.Paciente.Diagnostico.Discrepancia
+            //Dx Ortodoncico 2
+            rcanina = data.General.Paciente.Diagnostico.Relacion_canina
+            rmolar = data.General.Paciente.Diagnostico.Relacion_molar
+            anginter = data.General.Paciente.Diagnostico.Angulo_Interincisivo
+            convexidad = data.General.Paciente.Diagnostico.Convexidad
+            alturafa = data.General.Paciente.Diagnostico.Altura_facial
+            prolabial = data.General.Paciente.Diagnostico.Protrusion_labial
+            pfacial = data.General.Paciente.Diagnostico.Profundidad_facial
+            ejefacial = data.General.Paciente.Diagnostico.Eje_facial
+            angpmandibular = data.General.Paciente.Diagnostico.Ang_Plano_mandibular
+            amaxilar = data.General.Paciente.Diagnostico.Altura_maxilar
+            pmaxilar= data.General.Paciente.Diagnostico.Profundidad_maxilar
+             //Sector 1
+            v18 = data.General.Paciente.Dientes.Sector_1.e18.Vestibular;
+            p18 = data.General.Paciente.Dientes.Sector_1.e18.Palatino;
+            m18 = data.General.Paciente.Dientes.Sector_1.e18.Mesial;
+            d18 = data.General.Paciente.Dientes.Sector_1.e18.Distal;
+            o18 = data.General.Paciente.Dientes.Sector_1.e18.Oclusal;
+            v17 = data.General.Paciente.Dientes.Sector_1.e17.Vestibular;
+            p17 = data.General.Paciente.Dientes.Sector_1.e17.Palatino;
+            m17 = data.General.Paciente.Dientes.Sector_1.e17.Mesial;
+            d17 = data.General.Paciente.Dientes.Sector_1.e17.Distal;
+            o17 = data.General.Paciente.Dientes.Sector_1.e17.Oclusal;
+            v16 = data.General.Paciente.Dientes.Sector_1.e16.Vestibular;
+            p16 = data.General.Paciente.Dientes.Sector_1.e16.Palatino;
+            m16 = data.General.Paciente.Dientes.Sector_1.e16.Mesial;
+            d16 = data.General.Paciente.Dientes.Sector_1.e16.Distal;
+            o16 = data.General.Paciente.Dientes.Sector_1.e16.Oclusal;
+            v15 = data.General.Paciente.Dientes.Sector_1.e15.Vestibular;
+            p15 = data.General.Paciente.Dientes.Sector_1.e15.Palatino;
+            m15 = data.General.Paciente.Dientes.Sector_1.e15.Mesial;
+            d15 = data.General.Paciente.Dientes.Sector_1.e15.Distal;
+            o15 = data.General.Paciente.Dientes.Sector_1.e15.Oclusal;
+            v14 = data.General.Paciente.Dientes.Sector_1.e14.Vestibular;
+            p14 = data.General.Paciente.Dientes.Sector_1.e14.Palatino;
+            m14 = data.General.Paciente.Dientes.Sector_1.e14.Mesial;
+            d14 = data.General.Paciente.Dientes.Sector_1.e14.Distal;
+            o14 = data.General.Paciente.Dientes.Sector_1.e14.Oclusal;
+            v13 = data.General.Paciente.Dientes.Sector_1.e13.Vestibular;
+            p13 = data.General.Paciente.Dientes.Sector_1.e13.Palatino;
+            m13 = data.General.Paciente.Dientes.Sector_1.e13.Mesial;
+            d13 = data.General.Paciente.Dientes.Sector_1.e13.Distal;
+            o13 = data.General.Paciente.Dientes.Sector_1.e13.Oclusal;
+            v12 = data.General.Paciente.Dientes.Sector_1.e12.Vestibular;
+            p12 = data.General.Paciente.Dientes.Sector_1.e12.Palatino;
+            m12 = data.General.Paciente.Dientes.Sector_1.e12.Mesial;
+            d12 = data.General.Paciente.Dientes.Sector_1.e12.Distal;
+            o12 = data.General.Paciente.Dientes.Sector_1.e12.Oclusal;
+            v11 = data.General.Paciente.Dientes.Sector_1.e11.Vestibular;
+            p11 = data.General.Paciente.Dientes.Sector_1.e11.Palatino;
+            m11 = data.General.Paciente.Dientes.Sector_1.e11.Mesial;
+            d11 = data.General.Paciente.Dientes.Sector_1.e11.Distal;
+            o11 = data.General.Paciente.Dientes.Sector_1.e11.Oclusal;
+            //Sector 2
+            v28 = data.General.Paciente.Dientes.Sector_2.e28.Vestibular;
+            p28 = data.General.Paciente.Dientes.Sector_2.e28.Palatino;
+            m28 = data.General.Paciente.Dientes.Sector_2.e28.Mesial;
+            d28 = data.General.Paciente.Dientes.Sector_2.e28.Distal;
+            o28 = data.General.Paciente.Dientes.Sector_2.e28.Oclusal;
+            v27 = data.General.Paciente.Dientes.Sector_2.e27.Vestibular;
+            p27 = data.General.Paciente.Dientes.Sector_2.e27.Palatino;
+            m27 = data.General.Paciente.Dientes.Sector_2.e27.Mesial;
+            d27 = data.General.Paciente.Dientes.Sector_2.e27.Distal;
+            o27 = data.General.Paciente.Dientes.Sector_2.e27.Oclusal;
+            v26 = data.General.Paciente.Dientes.Sector_2.e26.Vestibular;
+            p26 = data.General.Paciente.Dientes.Sector_2.e26.Palatino;
+            m26 = data.General.Paciente.Dientes.Sector_2.e26.Mesial;
+            d26 = data.General.Paciente.Dientes.Sector_2.e26.Distal;
+            o26 = data.General.Paciente.Dientes.Sector_2.e26.Oclusal;
+            v25 = data.General.Paciente.Dientes.Sector_2.e25.Vestibular;
+            p25 = data.General.Paciente.Dientes.Sector_2.e25.Palatino;
+            m25 = data.General.Paciente.Dientes.Sector_2.e25.Mesial;
+            d25 = data.General.Paciente.Dientes.Sector_2.e25.Distal;
+            o25 = data.General.Paciente.Dientes.Sector_2.e25.Oclusal;
+            v24 = data.General.Paciente.Dientes.Sector_2.e24.Vestibular;
+            p24 = data.General.Paciente.Dientes.Sector_2.e24.Palatino;
+            m24 = data.General.Paciente.Dientes.Sector_2.e24.Mesial;
+            d24 = data.General.Paciente.Dientes.Sector_2.e24.Distal;
+            o24 = data.General.Paciente.Dientes.Sector_2.e24.Oclusal;
+            v23 = data.General.Paciente.Dientes.Sector_2.e23.Vestibular;
+            p23 = data.General.Paciente.Dientes.Sector_2.e23.Palatino;
+            m23 = data.General.Paciente.Dientes.Sector_2.e23.Mesial;
+            d23 = data.General.Paciente.Dientes.Sector_2.e23.Distal;
+            o23 = data.General.Paciente.Dientes.Sector_2.e23.Oclusal;
+            v22 = data.General.Paciente.Dientes.Sector_2.e22.Vestibular;
+            p22 = data.General.Paciente.Dientes.Sector_2.e22.Palatino;
+            m22 = data.General.Paciente.Dientes.Sector_2.e22.Mesial;
+            d22 = data.General.Paciente.Dientes.Sector_2.e22.Distal;
+            o22 = data.General.Paciente.Dientes.Sector_2.e22.Oclusal;
+            v21 = data.General.Paciente.Dientes.Sector_2.e21.Vestibular;
+            p21 = data.General.Paciente.Dientes.Sector_2.e21.Palatino;
+            m21 = data.General.Paciente.Dientes.Sector_2.e21.Mesial;
+            d21 = data.General.Paciente.Dientes.Sector_2.e21.Distal;
+            o21 = data.General.Paciente.Dientes.Sector_2.e21.Oclusal;
+            //Sector 3
+            v38 = data.General.Paciente.Dientes.Sector_3.e38.Vestibular;
+            p38 = data.General.Paciente.Dientes.Sector_3.e38.Palatino;
+            m38 = data.General.Paciente.Dientes.Sector_3.e38.Mesial;
+            d38 = data.General.Paciente.Dientes.Sector_3.e38.Distal;
+            o38 = data.General.Paciente.Dientes.Sector_3.e38.Oclusal;
+            v37 = data.General.Paciente.Dientes.Sector_3.e37.Vestibular;
+            p37 = data.General.Paciente.Dientes.Sector_3.e37.Palatino;
+            m37 = data.General.Paciente.Dientes.Sector_3.e37.Mesial;
+            d37 = data.General.Paciente.Dientes.Sector_3.e37.Distal;
+            o37 = data.General.Paciente.Dientes.Sector_3.e37.Oclusal;
+            v36 = data.General.Paciente.Dientes.Sector_3.e36.Vestibular;
+            p36 = data.General.Paciente.Dientes.Sector_3.e36.Palatino;
+            m36 = data.General.Paciente.Dientes.Sector_3.e36.Mesial;
+            d36 = data.General.Paciente.Dientes.Sector_3.e36.Distal;
+            o36 = data.General.Paciente.Dientes.Sector_3.e36.Oclusal;
+            v35 = data.General.Paciente.Dientes.Sector_3.e35.Vestibular;
+            p35 = data.General.Paciente.Dientes.Sector_3.e35.Palatino;
+            m35 = data.General.Paciente.Dientes.Sector_3.e35.Mesial;
+            d35 = data.General.Paciente.Dientes.Sector_3.e35.Distal;
+            o35 = data.General.Paciente.Dientes.Sector_3.e35.Oclusal;
+            v34 = data.General.Paciente.Dientes.Sector_3.e34.Vestibular;
+            p34 = data.General.Paciente.Dientes.Sector_3.e34.Palatino;
+            m34 = data.General.Paciente.Dientes.Sector_3.e34.Mesial;
+            d34 = data.General.Paciente.Dientes.Sector_3.e34.Distal;
+            o34 = data.General.Paciente.Dientes.Sector_3.e34.Oclusal;
+            v33 = data.General.Paciente.Dientes.Sector_3.e33.Vestibular;
+            p33 = data.General.Paciente.Dientes.Sector_3.e33.Palatino;
+            m33 = data.General.Paciente.Dientes.Sector_3.e33.Mesial;
+            d33 = data.General.Paciente.Dientes.Sector_3.e33.Distal;
+            o33 = data.General.Paciente.Dientes.Sector_3.e33.Oclusal;
+            v32 = data.General.Paciente.Dientes.Sector_3.e32.Vestibular;
+            p32 = data.General.Paciente.Dientes.Sector_3.e32.Palatino;
+            m32 = data.General.Paciente.Dientes.Sector_3.e32.Mesial;
+            d32 = data.General.Paciente.Dientes.Sector_3.e32.Distal;
+            o32 = data.General.Paciente.Dientes.Sector_3.e32.Oclusal;
+            v31 = data.General.Paciente.Dientes.Sector_3.e31.Vestibular;
+            p31 = data.General.Paciente.Dientes.Sector_3.e31.Palatino;
+            m31 = data.General.Paciente.Dientes.Sector_3.e31.Mesial;
+            d31 = data.General.Paciente.Dientes.Sector_3.e31.Distal;
+            o31 = data.General.Paciente.Dientes.Sector_3.e31.Oclusal;
+            //Sector 4
+            v48 = data.General.Paciente.Dientes.Sector_4.e48.Vestibular;
+            p48 = data.General.Paciente.Dientes.Sector_4.e48.Palatino;
+            m48 = data.General.Paciente.Dientes.Sector_4.e48.Mesial;
+            d48 = data.General.Paciente.Dientes.Sector_4.e48.Distal;
+            o48 = data.General.Paciente.Dientes.Sector_4.e48.Oclusal;
+            v47 = data.General.Paciente.Dientes.Sector_4.e47.Vestibular;
+            p47 = data.General.Paciente.Dientes.Sector_4.e47.Palatino;
+            m47 = data.General.Paciente.Dientes.Sector_4.e47.Mesial;
+            d47 = data.General.Paciente.Dientes.Sector_4.e47.Distal;
+            o47 = data.General.Paciente.Dientes.Sector_4.e47.Oclusal;
+            v46 = data.General.Paciente.Dientes.Sector_4.e46.Vestibular;
+            p46 = data.General.Paciente.Dientes.Sector_4.e46.Palatino;
+            m46 = data.General.Paciente.Dientes.Sector_4.e46.Mesial;
+            d46 = data.General.Paciente.Dientes.Sector_4.e46.Distal;
+            o46 = data.General.Paciente.Dientes.Sector_4.e46.Oclusal;
+            v45 = data.General.Paciente.Dientes.Sector_4.e45.Vestibular;
+            p45 = data.General.Paciente.Dientes.Sector_4.e45.Palatino;
+            m45 = data.General.Paciente.Dientes.Sector_4.e45.Mesial;
+            d45 = data.General.Paciente.Dientes.Sector_4.e45.Distal;
+            o45 = data.General.Paciente.Dientes.Sector_4.e45.Oclusal;
+            v44 = data.General.Paciente.Dientes.Sector_4.e44.Vestibular;
+            p44 = data.General.Paciente.Dientes.Sector_4.e44.Palatino;
+            m44 = data.General.Paciente.Dientes.Sector_4.e44.Mesial;
+            d44 = data.General.Paciente.Dientes.Sector_4.e44.Distal;
+            o44 = data.General.Paciente.Dientes.Sector_4.e44.Oclusal;
+            v43 = data.General.Paciente.Dientes.Sector_4.e43.Vestibular;
+            p43 = data.General.Paciente.Dientes.Sector_4.e43.Palatino;
+            m43 = data.General.Paciente.Dientes.Sector_4.e43.Mesial;
+            d43 = data.General.Paciente.Dientes.Sector_4.e43.Distal;
+            o43 = data.General.Paciente.Dientes.Sector_4.e43.Oclusal;
+            v42 = data.General.Paciente.Dientes.Sector_4.e42.Vestibular;
+            p42 = data.General.Paciente.Dientes.Sector_4.e42.Palatino;
+            m42 = data.General.Paciente.Dientes.Sector_4.e42.Mesial;
+            d42 = data.General.Paciente.Dientes.Sector_4.e42.Distal;
+            o42 = data.General.Paciente.Dientes.Sector_4.e42.Oclusal;
+            v41 = data.General.Paciente.Dientes.Sector_4.e41.Vestibular;
+            p41 = data.General.Paciente.Dientes.Sector_4.e41.Palatino;
+            m41 = data.General.Paciente.Dientes.Sector_4.e41.Mesial;
+            d41 = data.General.Paciente.Dientes.Sector_4.e41.Distal;
+            o41 = data.General.Paciente.Dientes.Sector_4.e41.Oclusal;
+            console.log(data.General);
+            return true;
+        });
+
+</script>
+
+<script  type="text/javascript">
+    function actualizar() {
+        //Filiatorios
+        
+        document.getElementById("inputNombre").value = nombre;
+        document.getElementById("inputSexo").value = sexo;
+        document.getElementById("inputFechaC").value = fecha;
+        document.getElementById("inputEmbarazo").value = embarazo;
+        document.getElementById("inputTratamiento").value = tratamientos;
+        document.getElementById("inputMotivo").value = motivo;
+        document.getElementById("inputOSocial").value = obrasocial;
+        document.getElementById("inputTelefono").value = telefono;
+        document.getElementById("inputDireccion").value = direccion;
+        document.getElementById("inputFechaN").value = edad;
+        document.getElementById("inputObservaciones").value = observaciones;
+        document.getElementById("inputCardiaca").value = cardiaca;
+        document.getElementById("inputRespiratoria").value = respiratoria;
+        document.getElementById("inputAlergica").value = alergica;
+        document.getElementById("inputAutoinmune").value = autoinmune;
+        document.getElementById("inputRenal").value = renal;
+        document.getElementById("inputCirugias").value = cirugia;
+        document.getElementById("laterali").src=laterali;
+        document.getElementById("laterald").src=laterald;
+        document.getElementById("oclusali").src=oclusali;
+        document.getElementById("oclusals").src=oclusals;
+        document.getElementById("frente").src=frente;
+        document.getElementById("cara").src=cara;
+        document.getElementById("perfili").src=perfili;
+        document.getElementById("perfild").src=perfild;
+        //DXGral
+        document.getElementById("inputBiotipo").value = biotipof
+        document.getElementById("inputHabito").value = habitosp
+        document.getElementById("inputMPD").value = malposiciones
+        document.getElementById("inputAI").value = alineacioni
+        document.getElementById("inputEP").value = entrecruzamiento
+        document.getElementById("inputLMD").value = lineamd
+        document.getElementById("inputLMF").value = lineamf
+        document.getElementById("inputOverbite").value = overbite
+        document.getElementById("inputOverjet").value = overjet
+        document.getElementById("inputCS").value = curvas
+        document.getElementById("inputClaseMD").value = clasemd
+        document.getElementById("inputClaseMI").value = clasemi
+        document.getElementById("inputClaseCD").value = clasecd
+        document.getElementById("inputClaseCI").value = claseci
+        //Dx Ortodoncico
+        document.getElementById("denticion").value = denticion
+
+        document.getElementById("caninots").value = caninots
+        document.getElementById("molarts").value = molarts
+        document.getElementById("2molarts").value = molar2ts
+        document.getElementById("caninoti").value = caninoti
+        document.getElementById("molarti").value = molarti
+        document.getElementById("2molarti").value = molar2ti
+
+        document.getElementById("caninoms").value = caninoms
+        document.getElementById("molarms").value = molarms
+        document.getElementById("2molarms").value = molar2ms
+        document.getElementById("caninomi").value = caninomi
+        document.getElementById("molarmi").value = molarmi
+        document.getElementById("2molarmi").value = molar2mi
+
+        document.getElementById("caninops").value = caninops
+        document.getElementById("molarps").value = molarps
+        document.getElementById("2molarps").value = molar2ps
+        document.getElementById("caninopi").value = caninopi
+        document.getElementById("molarpi").value = molarpi
+        document.getElementById("2molarpi").value = molar2pi
+
+        document.getElementById("profundidadp").value = profpaladar
+        document.getElementById("disdenal").value = discrepancia
+        //Dx Ortodoncico 2
+        document.getElementById("rmolar").value = rmolar
+        document.getElementById("rcanina").value = rcanina
+        document.getElementById("anginter").value = anginter
+
+        document.getElementById("convexidad").value = convexidad
+        document.getElementById("alturafacialinferior").value = alturafa
+
+        document.getElementById("plabial").value = prolabial
+
+        document.getElementById("pfacial").value = pfacial
+        document.getElementById("ejefacial").value = ejefacial
+        document.getElementById("angplanomandibular").value = angpmandibular
+        document.getElementById("pmaxilar").value = pmaxilar
+        document.getElementById("amaxilar").value = amaxilar
+
+        //Dientes
+        //Sector1
+        document.getElementById("cuadrov18").value = v18;
+        document.getElementById("cuadrol18").value = p18;
+        document.getElementById("cuadrom18").value = m18;
+        document.getElementById("cuadrod18").value = d18;
+        document.getElementById("cuadroo18").value = o18;
+        document.getElementById("cuadrov17").value = v17;
+        document.getElementById("cuadrol17").value = p17;
+        document.getElementById("cuadrom17").value = m17;
+        document.getElementById("cuadrod17").value = d17;
+        document.getElementById("cuadroo17").value = o17;
+        document.getElementById("cuadrov16").value = v16;
+        document.getElementById("cuadrol16").value = p16;
+        document.getElementById("cuadrom16").value = m16;
+        document.getElementById("cuadrod16").value = d16;
+        document.getElementById("cuadroo16").value = o16;
+        document.getElementById("cuadrov15").value = v15;
+        document.getElementById("cuadrol15").value = p15;
+        document.getElementById("cuadrom15").value = m15;
+        document.getElementById("cuadrod15").value = d15;
+        document.getElementById("cuadroo15").value = o15;
+        document.getElementById("cuadrov14").value = v14;
+        document.getElementById("cuadrol14").value = p14;
+        document.getElementById("cuadrom14").value = m14;
+        document.getElementById("cuadrod14").value = d14;
+        document.getElementById("cuadroo14").value = o14;
+        document.getElementById("cuadrov13").value = v13;
+        document.getElementById("cuadrol13").value = p13;
+        document.getElementById("cuadrom13").value = m13;
+        document.getElementById("cuadrod13").value = d13;
+        document.getElementById("cuadroo13").value = o13;
+        document.getElementById("cuadrov12").value = v12;
+        document.getElementById("cuadrol12").value = p12;
+        document.getElementById("cuadrom12").value = m12;
+        document.getElementById("cuadrod12").value = d12;
+        document.getElementById("cuadroo12").value = o12;
+        document.getElementById("cuadrov11").value = v11;
+        document.getElementById("cuadrol11").value = p11;
+        document.getElementById("cuadrom11").value = m11;
+        document.getElementById("cuadrod11").value = d11;
+        document.getElementById("cuadroo11").value = o11;
+        //Sector2
+        document.getElementById("cuadrov28").value = v28;
+        document.getElementById("cuadrol28").value = p28;
+        document.getElementById("cuadrom28").value = m28;
+        document.getElementById("cuadrod28").value = d28;
+        document.getElementById("cuadroo28").value = o28;
+        document.getElementById("cuadrov27").value = v27;
+        document.getElementById("cuadrol27").value = p27;
+        document.getElementById("cuadrom27").value = m27;
+        document.getElementById("cuadrod27").value = d27;
+        document.getElementById("cuadroo27").value = o27;
+        document.getElementById("cuadrov26").value = v26;
+        document.getElementById("cuadrol26").value = p26;
+        document.getElementById("cuadrom26").value = m26;
+        document.getElementById("cuadrod26").value = d26;
+        document.getElementById("cuadroo26").value = o26;
+        document.getElementById("cuadrov25").value = v25;
+        document.getElementById("cuadrol25").value = p25;
+        document.getElementById("cuadrom25").value = m25;
+        document.getElementById("cuadrod25").value = d25;
+        document.getElementById("cuadroo25").value = o25;
+        document.getElementById("cuadrov24").value = v24;
+        document.getElementById("cuadrol24").value = p24;
+        document.getElementById("cuadrom24").value = m24;
+        document.getElementById("cuadrod24").value = d24;
+        document.getElementById("cuadroo24").value = o24;
+        document.getElementById("cuadrov23").value = v23;
+        document.getElementById("cuadrol23").value = p23;
+        document.getElementById("cuadrom23").value = m23;
+        document.getElementById("cuadrod23").value = d23;
+        document.getElementById("cuadroo23").value = o23;
+        document.getElementById("cuadrov22").value = v22;
+        document.getElementById("cuadrol22").value = p22;
+        document.getElementById("cuadrom22").value = m22;
+        document.getElementById("cuadrod22").value = d22;
+        document.getElementById("cuadroo22").value = o22;
+        document.getElementById("cuadrov21").value = v21;
+        document.getElementById("cuadrol21").value = p21;
+        document.getElementById("cuadrom21").value = m21;
+        document.getElementById("cuadrod21").value = d21;
+        document.getElementById("cuadroo21").value = o21;
+        //Sector3
+        document.getElementById("cuadrov38").value = v38;
+        document.getElementById("cuadrol38").value = p38;
+        document.getElementById("cuadrom38").value = m38;
+        document.getElementById("cuadrod38").value = d38;
+        document.getElementById("cuadroo38").value = o38;
+        document.getElementById("cuadrov37").value = v37;
+        document.getElementById("cuadrol37").value = p37;
+        document.getElementById("cuadrom37").value = m37;
+        document.getElementById("cuadrod37").value = d37;
+        document.getElementById("cuadroo37").value = o37;
+        document.getElementById("cuadrov36").value = v36;
+        document.getElementById("cuadrol36").value = p36;
+        document.getElementById("cuadrom36").value = m36;
+        document.getElementById("cuadrod36").value = d36;
+        document.getElementById("cuadroo36").value = o36;
+        document.getElementById("cuadrov35").value = v35;
+        document.getElementById("cuadrol35").value = p35;
+        document.getElementById("cuadrom35").value = m35;
+        document.getElementById("cuadrod35").value = d35;
+        document.getElementById("cuadroo35").value = o35;
+        document.getElementById("cuadrov34").value = v34;
+        document.getElementById("cuadrol34").value = p34;
+        document.getElementById("cuadrom34").value = m34;
+        document.getElementById("cuadrod34").value = d34;
+        document.getElementById("cuadroo34").value = o34;
+        document.getElementById("cuadrov33").value = v33;
+        document.getElementById("cuadrol33").value = p33;
+        document.getElementById("cuadrom33").value = m33;
+        document.getElementById("cuadrod33").value = d33;
+        document.getElementById("cuadroo33").value = o33;
+        document.getElementById("cuadrov32").value = v32;
+        document.getElementById("cuadrol32").value = p32;
+        document.getElementById("cuadrom32").value = m32;
+        document.getElementById("cuadrod32").value = d32;
+        document.getElementById("cuadroo32").value = o32;
+        document.getElementById("cuadrov31").value = v31;
+        document.getElementById("cuadrol31").value = p31;
+        document.getElementById("cuadrom31").value = m31;
+        document.getElementById("cuadrod31").value = d31;
+        document.getElementById("cuadroo31").value = o31;
+        //Sector4
+        document.getElementById("cuadrov48").value = v48;
+        document.getElementById("cuadrol48").value = p48;
+        document.getElementById("cuadrom48").value = m48;
+        document.getElementById("cuadrod48").value = d48;
+        document.getElementById("cuadroo48").value = o48;
+        document.getElementById("cuadrov47").value = v47;
+        document.getElementById("cuadrol47").value = p47;
+        document.getElementById("cuadrom47").value = m47;
+        document.getElementById("cuadrod47").value = d47;
+        document.getElementById("cuadroo47").value = o47;
+        document.getElementById("cuadrov46").value = v46;
+        document.getElementById("cuadrol46").value = p46;
+        document.getElementById("cuadrom46").value = m46;
+        document.getElementById("cuadrod46").value = d46;
+        document.getElementById("cuadroo46").value = o46;
+        document.getElementById("cuadrov45").value = v45;
+        document.getElementById("cuadrol45").value = p45;
+        document.getElementById("cuadrom45").value = m45;
+        document.getElementById("cuadrod45").value = d45;
+        document.getElementById("cuadroo45").value = o45;
+        document.getElementById("cuadrov44").value = v44;
+        document.getElementById("cuadrol44").value = p44;
+        document.getElementById("cuadrom44").value = m44;
+        document.getElementById("cuadrod44").value = d44;
+        document.getElementById("cuadroo44").value = o44;
+        document.getElementById("cuadrov43").value = v43;
+        document.getElementById("cuadrol43").value = p43;
+        document.getElementById("cuadrom43").value = m43;
+        document.getElementById("cuadrod43").value = d43;
+        document.getElementById("cuadroo43").value = o43;
+        document.getElementById("cuadrov42").value = v42;
+        document.getElementById("cuadrol42").value = p42;
+        document.getElementById("cuadrom42").value = m42;
+        document.getElementById("cuadrod42").value = d42;
+        document.getElementById("cuadroo42").value = o42;
+        document.getElementById("cuadrov41").value = v41;
+        document.getElementById("cuadrol41").value = p41;
+        document.getElementById("cuadrom41").value = m41;
+        document.getElementById("cuadrod41").value = d41;
+        document.getElementById("cuadroo41").value = o41;
+        //SI Sector 1
+        if (o18 == "Sano"){
+            document.getElementById("cuadroo18").style.backgroundColor = "white";
+            }
+            else if (o18 == "Caries"){
+                document.getElementById("cuadroo18").style.backgroundColor = "blue";
+            }
+            else if (o18 == "Obturacion"){
+                document.getElementById("cuadroo18").style.backgroundColor = "red";
+            };
+        if (m18 == "Sano"){
+            document.getElementById("cuadrom18").style.backgroundColor = "white";
+            }
+            else if (m18 == "Caries"){
+                document.getElementById("cuadrom18").style.backgroundColor = "blue";
+            }
+            else if (m18 == "Obturacion"){
+                document.getElementById("cuadrom18").style.backgroundColor = "red";
+            }
+        if (d18 == "Sano"){
+            document.getElementById("cuadrod18").style.backgroundColor = "white";
+            }
+            else if (d18 == "Caries"){
+                document.getElementById("cuadrod18").style.backgroundColor = "blue";
+            }
+            else if (d18 == "Obturacion"){
+                document.getElementById("cuadrod18").style.backgroundColor = "red";
+            }
+        if (v18 == "Sano"){
+            document.getElementById("cuadrov18").style.backgroundColor = "white";
+            }
+            else if (v18 == "Caries"){
+                document.getElementById("cuadrov18").style.backgroundColor = "blue";
+            }
+            else if (v18 == "Obturacion"){
+                document.getElementById("cuadrov18").style.backgroundColor = "red";
+            }
+        if (p18 == "Sano"){
+            document.getElementById("cuadrol18").style.backgroundColor = "white";
+            }
+            else if (p18 == "Caries"){
+                document.getElementById("cuadrol18").style.backgroundColor = "blue";
+            }
+            else if (p18 == "Obturacion"){
+                document.getElementById("cuadrol18").style.backgroundColor = "red";
+            }
+        if (o17 == "Sano"){
+            document.getElementById("cuadroo17").style.backgroundColor = "white";
+            }
+            else if (o17 == "Caries"){
+                document.getElementById("cuadroo17").style.backgroundColor = "blue";
+            }
+            else if (o17 == "Obturacion"){
+                document.getElementById("cuadroo17").style.backgroundColor = "red";
+            };
+        if (m17 == "Sano"){
+            document.getElementById("cuadrom17").style.backgroundColor = "white";
+            }
+            else if (m17 == "Caries"){
+                document.getElementById("cuadrom17").style.backgroundColor = "blue";
+            }
+            else if (m17 == "Obturacion"){
+                document.getElementById("cuadrom17").style.backgroundColor = "red";
+            }
+        if (d17 == "Sano"){
+            document.getElementById("cuadrod17").style.backgroundColor = "white";
+            }
+            else if (d17 == "Caries"){
+                document.getElementById("cuadrod17").style.backgroundColor = "blue";
+            }
+            else if (d17 == "Obturacion"){
+                document.getElementById("cuadrod17").style.backgroundColor = "red";
+            }
+        if (v17 == "Sano"){
+            document.getElementById("cuadrov17").style.backgroundColor = "white";
+            }
+            else if (v17 == "Caries"){
+                document.getElementById("cuadrov17").style.backgroundColor = "blue";
+            }
+            else if (v17 == "Obturacion"){
+                document.getElementById("cuadrov17").style.backgroundColor = "red";
+            }
+        if (p17 == "Sano"){
+            document.getElementById("cuadrol17").style.backgroundColor = "white";
+            }
+            else if (p17 == "Caries"){
+                document.getElementById("cuadrol17").style.backgroundColor = "blue";
+            }
+            else if (p17 == "Obturacion"){
+                document.getElementById("cuadrol17").style.backgroundColor = "red";
+            };
+        if (o16 == "Sano"){
+            document.getElementById("cuadroo16").style.backgroundColor = "white";
+            }
+            else if (o16 == "Caries"){
+                document.getElementById("cuadroo16").style.backgroundColor = "blue";
+            }
+            else if (o16 == "Obturacion"){
+                document.getElementById("cuadroo16").style.backgroundColor = "red";
+            };
+        if (m16 == "Sano"){
+            document.getElementById("cuadrom16").style.backgroundColor = "white";
+            }
+            else if (m16 == "Caries"){
+                document.getElementById("cuadrom16").style.backgroundColor = "blue";
+            }
+            else if (m16 == "Obturacion"){
+                document.getElementById("cuadrom16").style.backgroundColor = "red";
+            }
+        if (d16 == "Sano"){
+            document.getElementById("cuadrod16").style.backgroundColor = "white";
+            }
+            else if (d16 == "Caries"){
+                document.getElementById("cuadrod16").style.backgroundColor = "blue";
+            }
+            else if (d16 == "Obturacion"){
+                document.getElementById("cuadrod16").style.backgroundColor = "red";
+            }
+        if (v16 == "Sano"){
+            document.getElementById("cuadrov16").style.backgroundColor = "white";
+            }
+            else if (v16 == "Caries"){
+                document.getElementById("cuadrov16").style.backgroundColor = "blue";
+            }
+            else if (v16 == "Obturacion"){
+                document.getElementById("cuadrov16").style.backgroundColor = "red";
+            }
+        if (p16 == "Sano"){
+            document.getElementById("cuadrol16").style.backgroundColor = "white";
+            }
+            else if (p16 == "Caries"){
+                document.getElementById("cuadrol16").style.backgroundColor = "blue";
+            }
+            else if (p16 == "Obturacion"){
+                document.getElementById("cuadrol16").style.backgroundColor = "red";
+            };
+        if (o15 == "Sano"){
+            document.getElementById("cuadroo15").style.backgroundColor = "white";
+            }
+            else if (o15 == "Caries"){
+                document.getElementById("cuadroo15").style.backgroundColor = "blue";
+            }
+            else if (o15 == "Obturacion"){
+                document.getElementById("cuadroo15").style.backgroundColor = "red";
+            };
+        if (m15 == "Sano"){
+            document.getElementById("cuadrom15").style.backgroundColor = "white";
+            }
+            else if (m15 == "Caries"){
+                document.getElementById("cuadrom15").style.backgroundColor = "blue";
+            }
+            else if (m15 == "Obturacion"){
+                document.getElementById("cuadrom15").style.backgroundColor = "red";
+            }
+        if (d15 == "Sano"){
+            document.getElementById("cuadrod15").style.backgroundColor = "white";
+            }
+            else if (d15 == "Caries"){
+                document.getElementById("cuadrod15").style.backgroundColor = "blue";
+            }
+            else if (d15 == "Obturacion"){
+                document.getElementById("cuadrod15").style.backgroundColor = "red";
+            }
+        if (v15 == "Sano"){
+            document.getElementById("cuadrov15").style.backgroundColor = "white";
+            }
+            else if (v15 == "Caries"){
+                document.getElementById("cuadrov15").style.backgroundColor = "blue";
+            }
+            else if (v15 == "Obturacion"){
+                document.getElementById("cuadrov15").style.backgroundColor = "red";
+            }
+        if (p15 == "Sano"){
+            document.getElementById("cuadrol15").style.backgroundColor = "white";
+            }
+            else if (p15 == "Caries"){
+                document.getElementById("cuadrol15").style.backgroundColor = "blue";
+            }
+            else if (p15 == "Obturacion"){
+                document.getElementById("cuadrol15").style.backgroundColor = "red";
+            };
+        if (o14 == "Sano"){
+            document.getElementById("cuadroo14").style.backgroundColor = "white";
+            }
+            else if (o14 == "Caries"){
+                document.getElementById("cuadroo14").style.backgroundColor = "blue";
+            }
+            else if (o14 == "Obturacion"){
+                document.getElementById("cuadroo14").style.backgroundColor = "red";
+            };
+        if (m14 == "Sano"){
+            document.getElementById("cuadrom14").style.backgroundColor = "white";
+            }
+            else if (m14 == "Caries"){
+                document.getElementById("cuadrom14").style.backgroundColor = "blue";
+            }
+            else if (m14 == "Obturacion"){
+                document.getElementById("cuadrom14").style.backgroundColor = "red";
+            }
+        if (d14 == "Sano"){
+            document.getElementById("cuadrod14").style.backgroundColor = "white";
+            }
+            else if (d14 == "Caries"){
+                document.getElementById("cuadrod14").style.backgroundColor = "blue";
+            }
+            else if (d14 == "Obturacion"){
+                document.getElementById("cuadrod14").style.backgroundColor = "red";
+            }
+        if (v14 == "Sano"){
+            document.getElementById("cuadrov14").style.backgroundColor = "white";
+            }
+            else if (v14 == "Caries"){
+                document.getElementById("cuadrov14").style.backgroundColor = "blue";
+            }
+            else if (v14 == "Obturacion"){
+                document.getElementById("cuadrov14").style.backgroundColor = "red";
+            }
+        if (p14 == "Sano"){
+            document.getElementById("cuadrol14").style.backgroundColor = "white";
+            }
+            else if (p14 == "Caries"){
+                document.getElementById("cuadrol14").style.backgroundColor = "blue";
+            }
+            else if (p14 == "Obturacion"){
+                document.getElementById("cuadrol14").style.backgroundColor = "red";
+            };
+        if (o13 == "Sano"){
+            document.getElementById("cuadroo13").style.backgroundColor = "white";
+            }
+            else if (o13 == "Caries"){
+                document.getElementById("cuadroo13").style.backgroundColor = "blue";
+            }
+            else if (o13 == "Obturacion"){
+                document.getElementById("cuadroo13").style.backgroundColor = "red";
+            };
+        if (m13 == "Sano"){
+            document.getElementById("cuadrom13").style.backgroundColor = "white";
+            }
+            else if (m13 == "Caries"){
+                document.getElementById("cuadrom13").style.backgroundColor = "blue";
+            }
+            else if (m13 == "Obturacion"){
+                document.getElementById("cuadrom13").style.backgroundColor = "red";
+            }
+        if (d13 == "Sano"){
+            document.getElementById("cuadrod13").style.backgroundColor = "white";
+            }
+            else if (d13 == "Caries"){
+                document.getElementById("cuadrod13").style.backgroundColor = "blue";
+            }
+            else if (d13 == "Obturacion"){
+                document.getElementById("cuadrod13").style.backgroundColor = "red";
+            }
+        if (v13 == "Sano"){
+            document.getElementById("cuadrov13").style.backgroundColor = "white";
+            }
+            else if (v13 == "Caries"){
+                document.getElementById("cuadrov13").style.backgroundColor = "blue";
+            }
+            else if (v13 == "Obturacion"){
+                document.getElementById("cuadrov13").style.backgroundColor = "red";
+            }
+        if (p13 == "Sano"){
+            document.getElementById("cuadrol13").style.backgroundColor = "white";
+            }
+            else if (p13 == "Caries"){
+                document.getElementById("cuadrol13").style.backgroundColor = "blue";
+            }
+            else if (p13 == "Obturacion"){
+                document.getElementById("cuadrol13").style.backgroundColor = "red";
+            };
+        if (o12 == "Sano"){
+            document.getElementById("cuadroo12").style.backgroundColor = "white";
+            }
+            else if (o12 == "Caries"){
+                document.getElementById("cuadroo12").style.backgroundColor = "blue";
+            }
+            else if (o12 == "Obturacion"){
+                document.getElementById("cuadroo12").style.backgroundColor = "red";
+            };
+        if (m12 == "Sano"){
+            document.getElementById("cuadrom12").style.backgroundColor = "white";
+            }
+            else if (m12 == "Caries"){
+                document.getElementById("cuadrom12").style.backgroundColor = "blue";
+            }
+            else if (m12 == "Obturacion"){
+                document.getElementById("cuadrom12").style.backgroundColor = "red";
+            }
+        if (d12 == "Sano"){
+            document.getElementById("cuadrod12").style.backgroundColor = "white";
+            }
+            else if (d12 == "Caries"){
+                document.getElementById("cuadrod12").style.backgroundColor = "blue";
+            }
+            else if (d12 == "Obturacion"){
+                document.getElementById("cuadrod12").style.backgroundColor = "red";
+            }
+        if (v12 == "Sano"){
+            document.getElementById("cuadrov12").style.backgroundColor = "white";
+            }
+            else if (v12 == "Caries"){
+                document.getElementById("cuadrov12").style.backgroundColor = "blue";
+            }
+            else if (v12 == "Obturacion"){
+                document.getElementById("cuadrov12").style.backgroundColor = "red";
+            }
+        if (p12 == "Sano"){
+            document.getElementById("cuadrol12").style.backgroundColor = "white";
+            }
+            else if (p12 == "Caries"){
+                document.getElementById("cuadrol12").style.backgroundColor = "blue";
+            }
+            else if (p12 == "Obturacion"){
+                document.getElementById("cuadrol12").style.backgroundColor = "red";
+            };
+        if (o11 == "Sano"){
+            document.getElementById("cuadroo11").style.backgroundColor = "white";
+            }
+            else if (o11 == "Caries"){
+                document.getElementById("cuadroo11").style.backgroundColor = "blue";
+            }
+            else if (o11 == "Obturacion"){
+                document.getElementById("cuadroo11").style.backgroundColor = "red";
+            };
+        if (m11 == "Sano"){
+            document.getElementById("cuadrom11").style.backgroundColor = "white";
+            }
+            else if (m11 == "Caries"){
+                document.getElementById("cuadrom11").style.backgroundColor = "blue";
+            }
+            else if (m11 == "Obturacion"){
+                document.getElementById("cuadrom11").style.backgroundColor = "red";
+            }
+        if (d11 == "Sano"){
+            document.getElementById("cuadrod11").style.backgroundColor = "white";
+            }
+            else if (d11 == "Caries"){
+                document.getElementById("cuadrod11").style.backgroundColor = "blue";
+            }
+            else if (d11 == "Obturacion"){
+                document.getElementById("cuadrod11").style.backgroundColor = "red";
+            }
+        if (v11 == "Sano"){
+            document.getElementById("cuadrov11").style.backgroundColor = "white";
+            }
+            else if (v11 == "Caries"){
+                document.getElementById("cuadrov11").style.backgroundColor = "blue";
+            }
+            else if (v11 == "Obturacion"){
+                document.getElementById("cuadrov11").style.backgroundColor = "red";
+            }
+        if (p11 == "Sano"){
+            document.getElementById("cuadrol11").style.backgroundColor = "white";
+            }
+            else if (p11 == "Caries"){
+                document.getElementById("cuadrol11").style.backgroundColor = "blue";
+            }
+            else if (p11 == "Obturacion"){
+                document.getElementById("cuadrol11").style.backgroundColor = "red";
+            };
+        //IF Sector 2
+        if (o28 == "Sano"){
+            document.getElementById("cuadroo28").style.backgroundColor = "white";
+            }
+            else if (o28 == "Caries"){
+                document.getElementById("cuadroo28").style.backgroundColor = "blue";
+            }
+            else if (o28 == "Obturacion"){
+                document.getElementById("cuadroo28").style.backgroundColor = "red";
+            };
+        
+        if (m28 == "Sano"){
+            document.getElementById("cuadrom28").style.backgroundColor = "white";
+            }
+            else if (m28 == "Caries"){
+                document.getElementById("cuadrom28").style.backgroundColor = "blue";
+            }
+            else if (m28 == "Obturacion"){
+                document.getElementById("cuadrom28").style.backgroundColor = "red";
+            }
+        if (d28 == "Sano"){
+            document.getElementById("cuadrod28").style.backgroundColor = "white";
+            }
+            else if (d28 == "Caries"){
+                document.getElementById("cuadrod28").style.backgroundColor = "blue";
+            }
+            else if (d28 == "Obturacion"){
+                document.getElementById("cuadrod28").style.backgroundColor = "red";
+            }
+        if (v28 == "Sano"){
+            document.getElementById("cuadrov28").style.backgroundColor = "white";
+            }
+            else if (v28 == "Caries"){
+                document.getElementById("cuadrov28").style.backgroundColor = "blue";
+            }
+            else if (v28 == "Obturacion"){
+                document.getElementById("cuadrov28").style.backgroundColor = "red";
+            }
+        if (p28 == "Sano"){
+            document.getElementById("cuadrol28").style.backgroundColor = "white";
+            }
+            else if (p28 == "Caries"){
+                document.getElementById("cuadrol28").style.backgroundColor = "blue";
+            }
+            else if (p28 == "Obturacion"){
+                document.getElementById("cuadrol28").style.backgroundColor = "red";
+            }
+        if (o27 == "Sano"){
+            document.getElementById("cuadroo27").style.backgroundColor = "white";
+            }
+            else if (o27 == "Caries"){
+                document.getElementById("cuadroo27").style.backgroundColor = "blue";
+            }
+            else if (o27 == "Obturacion"){
+                document.getElementById("cuadroo27").style.backgroundColor = "red";
+            };
+        if (m27 == "Sano"){
+            document.getElementById("cuadrom27").style.backgroundColor = "white";
+            }
+            else if (m27 == "Caries"){
+                document.getElementById("cuadrom27").style.backgroundColor = "blue";
+            }
+            else if (m27 == "Obturacion"){
+                document.getElementById("cuadrom27").style.backgroundColor = "red";
+            }
+        if (d27 == "Sano"){
+            document.getElementById("cuadrod27").style.backgroundColor = "white";
+            }
+            else if (d27 == "Caries"){
+                document.getElementById("cuadrod27").style.backgroundColor = "blue";
+            }
+            else if (d27 == "Obturacion"){
+                document.getElementById("cuadrod27").style.backgroundColor = "red";
+            }
+        if (v27 == "Sano"){
+            document.getElementById("cuadrov27").style.backgroundColor = "white";
+            }
+            else if (v27 == "Caries"){
+                document.getElementById("cuadrov27").style.backgroundColor = "blue";
+            }
+            else if (v27 == "Obturacion"){
+                document.getElementById("cuadrov27").style.backgroundColor = "red";
+            }
+        if (p27 == "Sano"){
+            document.getElementById("cuadrol27").style.backgroundColor = "white";
+            }
+            else if (p27 == "Caries"){
+                document.getElementById("cuadrol27").style.backgroundColor = "blue";
+            }
+            else if (p27 == "Obturacion"){
+                document.getElementById("cuadrol27").style.backgroundColor = "red";
+            };
+        if (o26 == "Sano"){
+            document.getElementById("cuadroo26").style.backgroundColor = "white";
+            }
+            else if (o26 == "Caries"){
+                document.getElementById("cuadroo26").style.backgroundColor = "blue";
+            }
+            else if (o26 == "Obturacion"){
+                document.getElementById("cuadroo26").style.backgroundColor = "red";
+            };
+        if (m26 == "Sano"){
+            document.getElementById("cuadrom26").style.backgroundColor = "white";
+            }
+            else if (m26 == "Caries"){
+                document.getElementById("cuadrom26").style.backgroundColor = "blue";
+            }
+            else if (m26 == "Obturacion"){
+                document.getElementById("cuadrom26").style.backgroundColor = "red";
+            }
+        if (d26 == "Sano"){
+            document.getElementById("cuadrod26").style.backgroundColor = "white";
+            }
+            else if (d26 == "Caries"){
+                document.getElementById("cuadrod26").style.backgroundColor = "blue";
+            }
+            else if (d26 == "Obturacion"){
+                document.getElementById("cuadrod26").style.backgroundColor = "red";
+            }
+        if (v26 == "Sano"){
+            document.getElementById("cuadrov26").style.backgroundColor = "white";
+            }
+            else if (v26 == "Caries"){
+                document.getElementById("cuadrov26").style.backgroundColor = "blue";
+            }
+            else if (v26 == "Obturacion"){
+                document.getElementById("cuadrov26").style.backgroundColor = "red";
+            }
+        if (p26 == "Sano"){
+            document.getElementById("cuadrol26").style.backgroundColor = "white";
+            }
+            else if (p26 == "Caries"){
+                document.getElementById("cuadrol26").style.backgroundColor = "blue";
+            }
+            else if (p26 == "Obturacion"){
+                document.getElementById("cuadrol26").style.backgroundColor = "red";
+            };
+        if (o25 == "Sano"){
+            document.getElementById("cuadroo25").style.backgroundColor = "white";
+            }
+            else if (o25 == "Caries"){
+                document.getElementById("cuadroo25").style.backgroundColor = "blue";
+            }
+            else if (o25 == "Obturacion"){
+                document.getElementById("cuadroo25").style.backgroundColor = "red";
+            };
+        if (m25 == "Sano"){
+            document.getElementById("cuadrom25").style.backgroundColor = "white";
+            }
+            else if (m25 == "Caries"){
+                document.getElementById("cuadrom25").style.backgroundColor = "blue";
+            }
+            else if (m25 == "Obturacion"){
+                document.getElementById("cuadrom25").style.backgroundColor = "red";
+            }
+        if (d25 == "Sano"){
+            document.getElementById("cuadrod25").style.backgroundColor = "white";
+            }
+            else if (d25 == "Caries"){
+                document.getElementById("cuadrod25").style.backgroundColor = "blue";
+            }
+            else if (d25 == "Obturacion"){
+                document.getElementById("cuadrod25").style.backgroundColor = "red";
+            }
+        if (v25 == "Sano"){
+            document.getElementById("cuadrov25").style.backgroundColor = "white";
+            }
+            else if (v25 == "Caries"){
+                document.getElementById("cuadrov25").style.backgroundColor = "blue";
+            }
+            else if (v25 == "Obturacion"){
+                document.getElementById("cuadrov25").style.backgroundColor = "red";
+            }
+        if (p25 == "Sano"){
+            document.getElementById("cuadrol25").style.backgroundColor = "white";
+            }
+            else if (p25 == "Caries"){
+                document.getElementById("cuadrol25").style.backgroundColor = "blue";
+            }
+            else if (p25 == "Obturacion"){
+                document.getElementById("cuadrol25").style.backgroundColor = "red";
+            };
+        if (o24 == "Sano"){
+            document.getElementById("cuadroo24").style.backgroundColor = "white";
+            }
+            else if (o24 == "Caries"){
+                document.getElementById("cuadroo24").style.backgroundColor = "blue";
+            }
+            else if (o24 == "Obturacion"){
+                document.getElementById("cuadroo24").style.backgroundColor = "red";
+            };
+        if (m24 == "Sano"){
+            document.getElementById("cuadrom24").style.backgroundColor = "white";
+            }
+            else if (m24 == "Caries"){
+                document.getElementById("cuadrom24").style.backgroundColor = "blue";
+            }
+            else if (m24 == "Obturacion"){
+                document.getElementById("cuadrom24").style.backgroundColor = "red";
+            }
+        if (d24 == "Sano"){
+            document.getElementById("cuadrod24").style.backgroundColor = "white";
+            }
+            else if (d24 == "Caries"){
+                document.getElementById("cuadrod24").style.backgroundColor = "blue";
+            }
+            else if (d24 == "Obturacion"){
+                document.getElementById("cuadrod24").style.backgroundColor = "red";
+            }
+        if (v24 == "Sano"){
+            document.getElementById("cuadrov24").style.backgroundColor = "white";
+            }
+            else if (v24 == "Caries"){
+                document.getElementById("cuadrov24").style.backgroundColor = "blue";
+            }
+            else if (v24 == "Obturacion"){
+                document.getElementById("cuadrov24").style.backgroundColor = "red";
+            }
+        if (p24 == "Sano"){
+            document.getElementById("cuadrol24").style.backgroundColor = "white";
+            }
+            else if (p24 == "Caries"){
+                document.getElementById("cuadrol24").style.backgroundColor = "blue";
+            }
+            else if (p24 == "Obturacion"){
+                document.getElementById("cuadrol24").style.backgroundColor = "red";
+            };
+        if (o23 == "Sano"){
+            document.getElementById("cuadroo23").style.backgroundColor = "white";
+            }
+            else if (o23 == "Caries"){
+                document.getElementById("cuadroo23").style.backgroundColor = "blue";
+            }
+            else if (o23 == "Obturacion"){
+                document.getElementById("cuadroo23").style.backgroundColor = "red";
+            };
+        if (m23 == "Sano"){
+            document.getElementById("cuadrom23").style.backgroundColor = "white";
+            }
+            else if (m23 == "Caries"){
+                document.getElementById("cuadrom23").style.backgroundColor = "blue";
+            }
+            else if (m23 == "Obturacion"){
+                document.getElementById("cuadrom23").style.backgroundColor = "red";
+            }
+        if (d23 == "Sano"){
+            document.getElementById("cuadrod23").style.backgroundColor = "white";
+            }
+            else if (d23 == "Caries"){
+                document.getElementById("cuadrod23").style.backgroundColor = "blue";
+            }
+            else if (d23 == "Obturacion"){
+                document.getElementById("cuadrod23").style.backgroundColor = "red";
+            }
+        if (v23 == "Sano"){
+            document.getElementById("cuadrov23").style.backgroundColor = "white";
+            }
+            else if (v23 == "Caries"){
+                document.getElementById("cuadrov23").style.backgroundColor = "blue";
+            }
+            else if (v23 == "Obturacion"){
+                document.getElementById("cuadrov23").style.backgroundColor = "red";
+            }
+        if (p23 == "Sano"){
+            document.getElementById("cuadrol23").style.backgroundColor = "white";
+            }
+            else if (p23 == "Caries"){
+                document.getElementById("cuadrol23").style.backgroundColor = "blue";
+            }
+            else if (p23 == "Obturacion"){
+                document.getElementById("cuadrol23").style.backgroundColor = "red";
+            };
+        if (o22 == "Sano"){
+            document.getElementById("cuadroo22").style.backgroundColor = "white";
+            }
+            else if (o22 == "Caries"){
+                document.getElementById("cuadroo22").style.backgroundColor = "blue";
+            }
+            else if (o22 == "Obturacion"){
+                document.getElementById("cuadroo22").style.backgroundColor = "red";
+            };
+        if (m22 == "Sano"){
+            document.getElementById("cuadrom22").style.backgroundColor = "white";
+            }
+            else if (m22 == "Caries"){
+                document.getElementById("cuadrom22").style.backgroundColor = "blue";
+            }
+            else if (m22 == "Obturacion"){
+                document.getElementById("cuadrom22").style.backgroundColor = "red";
+            }
+        if (d22 == "Sano"){
+            document.getElementById("cuadrod22").style.backgroundColor = "white";
+            }
+            else if (d22 == "Caries"){
+                document.getElementById("cuadrod22").style.backgroundColor = "blue";
+            }
+            else if (d22 == "Obturacion"){
+                document.getElementById("cuadrod22").style.backgroundColor = "red";
+            }
+        if (v22 == "Sano"){
+            document.getElementById("cuadrov22").style.backgroundColor = "white";
+            }
+            else if (v22 == "Caries"){
+                document.getElementById("cuadrov22").style.backgroundColor = "blue";
+            }
+            else if (v22 == "Obturacion"){
+                document.getElementById("cuadrov22").style.backgroundColor = "red";
+            }
+        if (p22 == "Sano"){
+            document.getElementById("cuadrol22").style.backgroundColor = "white";
+            }
+            else if (p22 == "Caries"){
+                document.getElementById("cuadrol22").style.backgroundColor = "blue";
+            }
+            else if (p22 == "Obturacion"){
+                document.getElementById("cuadrol22").style.backgroundColor = "red";
+            };
+        if (o21 == "Sano"){
+            document.getElementById("cuadroo21").style.backgroundColor = "white";
+            }
+            else if (o21 == "Caries"){
+                document.getElementById("cuadroo21").style.backgroundColor = "blue";
+            }
+            else if (o21 == "Obturacion"){
+                document.getElementById("cuadroo21").style.backgroundColor = "red";
+            };
+        if (m21 == "Sano"){
+            document.getElementById("cuadrom21").style.backgroundColor = "white";
+            }
+            else if (m21 == "Caries"){
+                document.getElementById("cuadrom21").style.backgroundColor = "blue";
+            }
+            else if (m21 == "Obturacion"){
+                document.getElementById("cuadrom21").style.backgroundColor = "red";
+            }
+        if (d21 == "Sano"){
+            document.getElementById("cuadrod21").style.backgroundColor = "white";
+            }
+            else if (d21 == "Caries"){
+                document.getElementById("cuadrod21").style.backgroundColor = "blue";
+            }
+            else if (d21 == "Obturacion"){
+                document.getElementById("cuadrod21").style.backgroundColor = "red";
+            }
+        if (v21 == "Sano"){
+            document.getElementById("cuadrov21").style.backgroundColor = "white";
+            }
+            else if (v21 == "Caries"){
+                document.getElementById("cuadrov21").style.backgroundColor = "blue";
+            }
+            else if (v21 == "Obturacion"){
+                document.getElementById("cuadrov21").style.backgroundColor = "red";
+            }
+        if (p21 == "Sano"){
+            document.getElementById("cuadrol21").style.backgroundColor = "white";
+            }
+            else if (p21 == "Caries"){
+                document.getElementById("cuadrol21").style.backgroundColor = "blue";
+            }
+            else if (p21 == "Obturacion"){
+                document.getElementById("cuadrol21").style.backgroundColor = "red";
+            };
+        //IF Sector 3
+        if (o38 == "Sano"){
+            document.getElementById("cuadroo38").style.backgroundColor = "white";
+            }
+            else if (o38 == "Caries"){
+                document.getElementById("cuadroo38").style.backgroundColor = "blue";
+            }
+            else if (o38 == "Obturacion"){
+                document.getElementById("cuadroo38").style.backgroundColor = "red";
+            };
+        
+        if (m38 == "Sano"){
+            document.getElementById("cuadrom38").style.backgroundColor = "white";
+            }
+            else if (m38 == "Caries"){
+                document.getElementById("cuadrom38").style.backgroundColor = "blue";
+            }
+            else if (m38 == "Obturacion"){
+                document.getElementById("cuadrom38").style.backgroundColor = "red";
+            }
+        if (d38 == "Sano"){
+            document.getElementById("cuadrod38").style.backgroundColor = "white";
+            }
+            else if (d38 == "Caries"){
+                document.getElementById("cuadrod38").style.backgroundColor = "blue";
+            }
+            else if (d38 == "Obturacion"){
+                document.getElementById("cuadrod38").style.backgroundColor = "red";
+            }
+        if (v38 == "Sano"){
+            document.getElementById("cuadrov38").style.backgroundColor = "white";
+            }
+            else if (v38 == "Caries"){
+                document.getElementById("cuadrov38").style.backgroundColor = "blue";
+            }
+            else if (v38 == "Obturacion"){
+                document.getElementById("cuadrov38").style.backgroundColor = "red";
+            }
+        if (p38 == "Sano"){
+            document.getElementById("cuadrol38").style.backgroundColor = "white";
+            }
+            else if (p38 == "Caries"){
+                document.getElementById("cuadrol38").style.backgroundColor = "blue";
+            }
+            else if (p38 == "Obturacion"){
+                document.getElementById("cuadrol38").style.backgroundColor = "red";
+            }
+        if (o37 == "Sano"){
+            document.getElementById("cuadroo37").style.backgroundColor = "white";
+            }
+            else if (o37 == "Caries"){
+                document.getElementById("cuadroo37").style.backgroundColor = "blue";
+            }
+            else if (o37 == "Obturacion"){
+                document.getElementById("cuadroo37").style.backgroundColor = "red";
+            };
+        if (m37 == "Sano"){
+            document.getElementById("cuadrom37").style.backgroundColor = "white";
+            }
+            else if (m37 == "Caries"){
+                document.getElementById("cuadrom37").style.backgroundColor = "blue";
+            }
+            else if (m37 == "Obturacion"){
+                document.getElementById("cuadrom37").style.backgroundColor = "red";
+            }
+        if (d37 == "Sano"){
+            document.getElementById("cuadrod37").style.backgroundColor = "white";
+            }
+            else if (d37 == "Caries"){
+                document.getElementById("cuadrod37").style.backgroundColor = "blue";
+            }
+            else if (d37 == "Obturacion"){
+                document.getElementById("cuadrod37").style.backgroundColor = "red";
+            }
+        if (v37 == "Sano"){
+            document.getElementById("cuadrov37").style.backgroundColor = "white";
+            }
+            else if (v37 == "Caries"){
+                document.getElementById("cuadrov37").style.backgroundColor = "blue";
+            }
+            else if (v37 == "Obturacion"){
+                document.getElementById("cuadrov37").style.backgroundColor = "red";
+            }
+        if (p37 == "Sano"){
+            document.getElementById("cuadrol37").style.backgroundColor = "white";
+            }
+            else if (p37 == "Caries"){
+                document.getElementById("cuadrol37").style.backgroundColor = "blue";
+            }
+            else if (p37 == "Obturacion"){
+                document.getElementById("cuadrol37").style.backgroundColor = "red";
+            };
+        if (o36 == "Sano"){
+            document.getElementById("cuadroo36").style.backgroundColor = "white";
+            }
+            else if (o36 == "Caries"){
+                document.getElementById("cuadroo36").style.backgroundColor = "blue";
+            }
+            else if (o36 == "Obturacion"){
+                document.getElementById("cuadroo36").style.backgroundColor = "red";
+            };
+        if (m36 == "Sano"){
+            document.getElementById("cuadrom36").style.backgroundColor = "white";
+            }
+            else if (m36 == "Caries"){
+                document.getElementById("cuadrom36").style.backgroundColor = "blue";
+            }
+            else if (m36 == "Obturacion"){
+                document.getElementById("cuadrom36").style.backgroundColor = "red";
+            }
+        if (d36 == "Sano"){
+            document.getElementById("cuadrod36").style.backgroundColor = "white";
+            }
+            else if (d36 == "Caries"){
+                document.getElementById("cuadrod36").style.backgroundColor = "blue";
+            }
+            else if (d36 == "Obturacion"){
+                document.getElementById("cuadrod36").style.backgroundColor = "red";
+            }
+        if (v36 == "Sano"){
+            document.getElementById("cuadrov36").style.backgroundColor = "white";
+            }
+            else if (v36 == "Caries"){
+                document.getElementById("cuadrov36").style.backgroundColor = "blue";
+            }
+            else if (v36 == "Obturacion"){
+                document.getElementById("cuadrov36").style.backgroundColor = "red";
+            }
+        if (p36 == "Sano"){
+            document.getElementById("cuadrol36").style.backgroundColor = "white";
+            }
+            else if (p36 == "Caries"){
+                document.getElementById("cuadrol36").style.backgroundColor = "blue";
+            }
+            else if (p36 == "Obturacion"){
+                document.getElementById("cuadrol36").style.backgroundColor = "red";
+            };
+        if (o35 == "Sano"){
+            document.getElementById("cuadroo35").style.backgroundColor = "white";
+            }
+            else if (o35 == "Caries"){
+                document.getElementById("cuadroo35").style.backgroundColor = "blue";
+            }
+            else if (o35 == "Obturacion"){
+                document.getElementById("cuadroo35").style.backgroundColor = "red";
+            };
+        if (m35 == "Sano"){
+            document.getElementById("cuadrom35").style.backgroundColor = "white";
+            }
+            else if (m35 == "Caries"){
+                document.getElementById("cuadrom35").style.backgroundColor = "blue";
+            }
+            else if (m35 == "Obturacion"){
+                document.getElementById("cuadrom35").style.backgroundColor = "red";
+            }
+        if (d35 == "Sano"){
+            document.getElementById("cuadrod35").style.backgroundColor = "white";
+            }
+            else if (d35 == "Caries"){
+                document.getElementById("cuadrod35").style.backgroundColor = "blue";
+            }
+            else if (d35 == "Obturacion"){
+                document.getElementById("cuadrod35").style.backgroundColor = "red";
+            }
+        if (v35 == "Sano"){
+            document.getElementById("cuadrov35").style.backgroundColor = "white";
+            }
+            else if (v35 == "Caries"){
+                document.getElementById("cuadrov35").style.backgroundColor = "blue";
+            }
+            else if (v35 == "Obturacion"){
+                document.getElementById("cuadrov35").style.backgroundColor = "red";
+            }
+        if (p35 == "Sano"){
+            document.getElementById("cuadrol35").style.backgroundColor = "white";
+            }
+            else if (p35 == "Caries"){
+                document.getElementById("cuadrol35").style.backgroundColor = "blue";
+            }
+            else if (p35 == "Obturacion"){
+                document.getElementById("cuadrol35").style.backgroundColor = "red";
+            };
+        if (o34 == "Sano"){
+            document.getElementById("cuadroo34").style.backgroundColor = "white";
+            }
+            else if (o34 == "Caries"){
+                document.getElementById("cuadroo34").style.backgroundColor = "blue";
+            }
+            else if (o34 == "Obturacion"){
+                document.getElementById("cuadroo34").style.backgroundColor = "red";
+            };
+        if (m34 == "Sano"){
+            document.getElementById("cuadrom34").style.backgroundColor = "white";
+            }
+            else if (m34 == "Caries"){
+                document.getElementById("cuadrom34").style.backgroundColor = "blue";
+            }
+            else if (m34 == "Obturacion"){
+                document.getElementById("cuadrom34").style.backgroundColor = "red";
+            }
+        if (d34 == "Sano"){
+            document.getElementById("cuadrod34").style.backgroundColor = "white";
+            }
+            else if (d34 == "Caries"){
+                document.getElementById("cuadrod34").style.backgroundColor = "blue";
+            }
+            else if (d34 == "Obturacion"){
+                document.getElementById("cuadrod34").style.backgroundColor = "red";
+            }
+        if (v34 == "Sano"){
+            document.getElementById("cuadrov34").style.backgroundColor = "white";
+            }
+            else if (v34 == "Caries"){
+                document.getElementById("cuadrov34").style.backgroundColor = "blue";
+            }
+            else if (v34 == "Obturacion"){
+                document.getElementById("cuadrov34").style.backgroundColor = "red";
+            }
+        if (p34 == "Sano"){
+            document.getElementById("cuadrol34").style.backgroundColor = "white";
+            }
+            else if (p34 == "Caries"){
+                document.getElementById("cuadrol34").style.backgroundColor = "blue";
+            }
+            else if (p34 == "Obturacion"){
+                document.getElementById("cuadrol34").style.backgroundColor = "red";
+            };
+        if (o33 == "Sano"){
+            document.getElementById("cuadroo33").style.backgroundColor = "white";
+            }
+            else if (o33 == "Caries"){
+                document.getElementById("cuadroo33").style.backgroundColor = "blue";
+            }
+            else if (o33 == "Obturacion"){
+                document.getElementById("cuadroo33").style.backgroundColor = "red";
+            };
+        if (m33 == "Sano"){
+            document.getElementById("cuadrom33").style.backgroundColor = "white";
+            }
+            else if (m33 == "Caries"){
+                document.getElementById("cuadrom33").style.backgroundColor = "blue";
+            }
+            else if (m33 == "Obturacion"){
+                document.getElementById("cuadrom33").style.backgroundColor = "red";
+            }
+        if (d33 == "Sano"){
+            document.getElementById("cuadrod33").style.backgroundColor = "white";
+            }
+            else if (d33 == "Caries"){
+                document.getElementById("cuadrod33").style.backgroundColor = "blue";
+            }
+            else if (d33 == "Obturacion"){
+                document.getElementById("cuadrod33").style.backgroundColor = "red";
+            }
+        if (v33 == "Sano"){
+            document.getElementById("cuadrov33").style.backgroundColor = "white";
+            }
+            else if (v33 == "Caries"){
+                document.getElementById("cuadrov33").style.backgroundColor = "blue";
+            }
+            else if (v33 == "Obturacion"){
+                document.getElementById("cuadrov33").style.backgroundColor = "red";
+            }
+        if (p33 == "Sano"){
+            document.getElementById("cuadrol33").style.backgroundColor = "white";
+            }
+            else if (p33 == "Caries"){
+                document.getElementById("cuadrol33").style.backgroundColor = "blue";
+            }
+            else if (p33 == "Obturacion"){
+                document.getElementById("cuadrol33").style.backgroundColor = "red";
+            };
+        if (o32 == "Sano"){
+            document.getElementById("cuadroo32").style.backgroundColor = "white";
+            }
+            else if (o32 == "Caries"){
+                document.getElementById("cuadroo32").style.backgroundColor = "blue";
+            }
+            else if (o32 == "Obturacion"){
+                document.getElementById("cuadroo32").style.backgroundColor = "red";
+            };
+        if (m32 == "Sano"){
+            document.getElementById("cuadrom32").style.backgroundColor = "white";
+            }
+            else if (m32 == "Caries"){
+                document.getElementById("cuadrom32").style.backgroundColor = "blue";
+            }
+            else if (m32 == "Obturacion"){
+                document.getElementById("cuadrom32").style.backgroundColor = "red";
+            }
+        if (d32 == "Sano"){
+            document.getElementById("cuadrod32").style.backgroundColor = "white";
+            }
+            else if (d32 == "Caries"){
+                document.getElementById("cuadrod32").style.backgroundColor = "blue";
+            }
+            else if (d32 == "Obturacion"){
+                document.getElementById("cuadrod32").style.backgroundColor = "red";
+            }
+        if (v32 == "Sano"){
+            document.getElementById("cuadrov32").style.backgroundColor = "white";
+            }
+            else if (v32 == "Caries"){
+                document.getElementById("cuadrov32").style.backgroundColor = "blue";
+            }
+            else if (v32 == "Obturacion"){
+                document.getElementById("cuadrov32").style.backgroundColor = "red";
+            }
+        if (p32 == "Sano"){
+            document.getElementById("cuadrol32").style.backgroundColor = "white";
+            }
+            else if (p32 == "Caries"){
+                document.getElementById("cuadrol32").style.backgroundColor = "blue";
+            }
+            else if (p32 == "Obturacion"){
+                document.getElementById("cuadrol32").style.backgroundColor = "red";
+            };
+        if (o31 == "Sano"){
+            document.getElementById("cuadroo31").style.backgroundColor = "white";
+            }
+            else if (o31 == "Caries"){
+                document.getElementById("cuadroo31").style.backgroundColor = "blue";
+            }
+            else if (o31 == "Obturacion"){
+                document.getElementById("cuadroo31").style.backgroundColor = "red";
+            };
+        if (m31 == "Sano"){
+            document.getElementById("cuadrom31").style.backgroundColor = "white";
+            }
+            else if (m31 == "Caries"){
+                document.getElementById("cuadrom31").style.backgroundColor = "blue";
+            }
+            else if (m31 == "Obturacion"){
+                document.getElementById("cuadrom31").style.backgroundColor = "red";
+            }
+        if (d31 == "Sano"){
+            document.getElementById("cuadrod31").style.backgroundColor = "white";
+            }
+            else if (d31 == "Caries"){
+                document.getElementById("cuadrod31").style.backgroundColor = "blue";
+            }
+            else if (d31 == "Obturacion"){
+                document.getElementById("cuadrod31").style.backgroundColor = "red";
+            }
+        if (v31 == "Sano"){
+            document.getElementById("cuadrov31").style.backgroundColor = "white";
+            }
+            else if (v31 == "Caries"){
+                document.getElementById("cuadrov31").style.backgroundColor = "blue";
+            }
+            else if (v31 == "Obturacion"){
+                document.getElementById("cuadrov31").style.backgroundColor = "red";
+            }
+        if (p31 == "Sano"){
+            document.getElementById("cuadrol31").style.backgroundColor = "white";
+            }
+            else if (p31 == "Caries"){
+                document.getElementById("cuadrol31").style.backgroundColor = "blue";
+            }
+            else if (p31 == "Obturacion"){
+                document.getElementById("cuadrol31").style.backgroundColor = "red";
+            };
+        //IF Sector 4
+        if (o48 == "Sano"){
+            document.getElementById("cuadroo48").style.backgroundColor = "white";
+            }
+            else if (o48 == "Caries"){
+                document.getElementById("cuadroo48").style.backgroundColor = "blue";
+            }
+            else if (o48 == "Obturacion"){
+                document.getElementById("cuadroo48").style.backgroundColor = "red";
+            };
+        
+        if (m48 == "Sano"){
+            document.getElementById("cuadrom48").style.backgroundColor = "white";
+            }
+            else if (m48 == "Caries"){
+                document.getElementById("cuadrom48").style.backgroundColor = "blue";
+            }
+            else if (m48 == "Obturacion"){
+                document.getElementById("cuadrom48").style.backgroundColor = "red";
+            }
+        if (d48 == "Sano"){
+            document.getElementById("cuadrod48").style.backgroundColor = "white";
+            }
+            else if (d48 == "Caries"){
+                document.getElementById("cuadrod48").style.backgroundColor = "blue";
+            }
+            else if (d48 == "Obturacion"){
+                document.getElementById("cuadrod48").style.backgroundColor = "red";
+            }
+        if (v48 == "Sano"){
+            document.getElementById("cuadrov48").style.backgroundColor = "white";
+            }
+            else if (v48 == "Caries"){
+                document.getElementById("cuadrov48").style.backgroundColor = "blue";
+            }
+            else if (v48 == "Obturacion"){
+                document.getElementById("cuadrov48").style.backgroundColor = "red";
+            }
+        if (p48 == "Sano"){
+            document.getElementById("cuadrol48").style.backgroundColor = "white";
+            }
+            else if (p48 == "Caries"){
+                document.getElementById("cuadrol48").style.backgroundColor = "blue";
+            }
+            else if (p48 == "Obturacion"){
+                document.getElementById("cuadrol48").style.backgroundColor = "red";
+            }
+        if (o47 == "Sano"){
+            document.getElementById("cuadroo47").style.backgroundColor = "white";
+            }
+            else if (o47 == "Caries"){
+                document.getElementById("cuadroo47").style.backgroundColor = "blue";
+            }
+            else if (o47 == "Obturacion"){
+                document.getElementById("cuadroo47").style.backgroundColor = "red";
+            };
+        if (m47 == "Sano"){
+            document.getElementById("cuadrom47").style.backgroundColor = "white";
+            }
+            else if (m47 == "Caries"){
+                document.getElementById("cuadrom47").style.backgroundColor = "blue";
+            }
+            else if (m47 == "Obturacion"){
+                document.getElementById("cuadrom47").style.backgroundColor = "red";
+            }
+        if (d47 == "Sano"){
+            document.getElementById("cuadrod47").style.backgroundColor = "white";
+            }
+            else if (d47 == "Caries"){
+                document.getElementById("cuadrod47").style.backgroundColor = "blue";
+            }
+            else if (d47 == "Obturacion"){
+                document.getElementById("cuadrod47").style.backgroundColor = "red";
+            }
+        if (v47 == "Sano"){
+            document.getElementById("cuadrov47").style.backgroundColor = "white";
+            }
+            else if (v47 == "Caries"){
+                document.getElementById("cuadrov47").style.backgroundColor = "blue";
+            }
+            else if (v47 == "Obturacion"){
+                document.getElementById("cuadrov47").style.backgroundColor = "red";
+            }
+        if (p47 == "Sano"){
+            document.getElementById("cuadrol47").style.backgroundColor = "white";
+            }
+            else if (p47 == "Caries"){
+                document.getElementById("cuadrol47").style.backgroundColor = "blue";
+            }
+            else if (p47 == "Obturacion"){
+                document.getElementById("cuadrol47").style.backgroundColor = "red";
+            };
+        if (o46 == "Sano"){
+            document.getElementById("cuadroo46").style.backgroundColor = "white";
+            }
+            else if (o46 == "Caries"){
+                document.getElementById("cuadroo46").style.backgroundColor = "blue";
+            }
+            else if (o46 == "Obturacion"){
+                document.getElementById("cuadroo46").style.backgroundColor = "red";
+            };
+        if (m46 == "Sano"){
+            document.getElementById("cuadrom46").style.backgroundColor = "white";
+            }
+            else if (m46 == "Caries"){
+                document.getElementById("cuadrom46").style.backgroundColor = "blue";
+            }
+            else if (m46 == "Obturacion"){
+                document.getElementById("cuadrom46").style.backgroundColor = "red";
+            }
+        if (d46 == "Sano"){
+            document.getElementById("cuadrod46").style.backgroundColor = "white";
+            }
+            else if (d46 == "Caries"){
+                document.getElementById("cuadrod46").style.backgroundColor = "blue";
+            }
+            else if (d46 == "Obturacion"){
+                document.getElementById("cuadrod46").style.backgroundColor = "red";
+            }
+        if (v46 == "Sano"){
+            document.getElementById("cuadrov46").style.backgroundColor = "white";
+            }
+            else if (v46 == "Caries"){
+                document.getElementById("cuadrov46").style.backgroundColor = "blue";
+            }
+            else if (v46 == "Obturacion"){
+                document.getElementById("cuadrov46").style.backgroundColor = "red";
+            }
+        if (p46 == "Sano"){
+            document.getElementById("cuadrol46").style.backgroundColor = "white";
+            }
+            else if (p46 == "Caries"){
+                document.getElementById("cuadrol46").style.backgroundColor = "blue";
+            }
+            else if (p46 == "Obturacion"){
+                document.getElementById("cuadrol46").style.backgroundColor = "red";
+            };
+        if (o45 == "Sano"){
+            document.getElementById("cuadroo45").style.backgroundColor = "white";
+            }
+            else if (o45 == "Caries"){
+                document.getElementById("cuadroo45").style.backgroundColor = "blue";
+            }
+            else if (o45 == "Obturacion"){
+                document.getElementById("cuadroo45").style.backgroundColor = "red";
+            };
+        if (m45 == "Sano"){
+            document.getElementById("cuadrom45").style.backgroundColor = "white";
+            }
+            else if (m45 == "Caries"){
+                document.getElementById("cuadrom45").style.backgroundColor = "blue";
+            }
+            else if (m45 == "Obturacion"){
+                document.getElementById("cuadrom45").style.backgroundColor = "red";
+            }
+        if (d45 == "Sano"){
+            document.getElementById("cuadrod45").style.backgroundColor = "white";
+            }
+            else if (d45 == "Caries"){
+                document.getElementById("cuadrod45").style.backgroundColor = "blue";
+            }
+            else if (d45 == "Obturacion"){
+                document.getElementById("cuadrod45").style.backgroundColor = "red";
+            }
+        if (v45 == "Sano"){
+            document.getElementById("cuadrov45").style.backgroundColor = "white";
+            }
+            else if (v45 == "Caries"){
+                document.getElementById("cuadrov45").style.backgroundColor = "blue";
+            }
+            else if (v45 == "Obturacion"){
+                document.getElementById("cuadrov45").style.backgroundColor = "red";
+            }
+        if (p45 == "Sano"){
+            document.getElementById("cuadrol45").style.backgroundColor = "white";
+            }
+            else if (p45 == "Caries"){
+                document.getElementById("cuadrol45").style.backgroundColor = "blue";
+            }
+            else if (p45 == "Obturacion"){
+                document.getElementById("cuadrol45").style.backgroundColor = "red";
+            };
+        if (o44 == "Sano"){
+            document.getElementById("cuadroo44").style.backgroundColor = "white";
+            }
+            else if (o44 == "Caries"){
+                document.getElementById("cuadroo44").style.backgroundColor = "blue";
+            }
+            else if (o44 == "Obturacion"){
+                document.getElementById("cuadroo44").style.backgroundColor = "red";
+            };
+        if (m44 == "Sano"){
+            document.getElementById("cuadrom44").style.backgroundColor = "white";
+            }
+            else if (m44 == "Caries"){
+                document.getElementById("cuadrom44").style.backgroundColor = "blue";
+            }
+            else if (m44 == "Obturacion"){
+                document.getElementById("cuadrom44").style.backgroundColor = "red";
+            }
+        if (d44 == "Sano"){
+            document.getElementById("cuadrod44").style.backgroundColor = "white";
+            }
+            else if (d44 == "Caries"){
+                document.getElementById("cuadrod44").style.backgroundColor = "blue";
+            }
+            else if (d44 == "Obturacion"){
+                document.getElementById("cuadrod44").style.backgroundColor = "red";
+            }
+        if (v44 == "Sano"){
+            document.getElementById("cuadrov44").style.backgroundColor = "white";
+            }
+            else if (v44 == "Caries"){
+                document.getElementById("cuadrov44").style.backgroundColor = "blue";
+            }
+            else if (v44 == "Obturacion"){
+                document.getElementById("cuadrov44").style.backgroundColor = "red";
+            }
+        if (p44 == "Sano"){
+            document.getElementById("cuadrol44").style.backgroundColor = "white";
+            }
+            else if (p44 == "Caries"){
+                document.getElementById("cuadrol44").style.backgroundColor = "blue";
+            }
+            else if (p44 == "Obturacion"){
+                document.getElementById("cuadrol44").style.backgroundColor = "red";
+            };
+        if (o43 == "Sano"){
+            document.getElementById("cuadroo43").style.backgroundColor = "white";
+            }
+            else if (o43 == "Caries"){
+                document.getElementById("cuadroo43").style.backgroundColor = "blue";
+            }
+            else if (o43 == "Obturacion"){
+                document.getElementById("cuadroo43").style.backgroundColor = "red";
+            };
+        if (m43 == "Sano"){
+            document.getElementById("cuadrom43").style.backgroundColor = "white";
+            }
+            else if (m43 == "Caries"){
+                document.getElementById("cuadrom43").style.backgroundColor = "blue";
+            }
+            else if (m43 == "Obturacion"){
+                document.getElementById("cuadrom43").style.backgroundColor = "red";
+            }
+        if (d43 == "Sano"){
+            document.getElementById("cuadrod43").style.backgroundColor = "white";
+            }
+            else if (d43 == "Caries"){
+                document.getElementById("cuadrod43").style.backgroundColor = "blue";
+            }
+            else if (d43 == "Obturacion"){
+                document.getElementById("cuadrod43").style.backgroundColor = "red";
+            }
+        if (v43 == "Sano"){
+            document.getElementById("cuadrov43").style.backgroundColor = "white";
+            }
+            else if (v43 == "Caries"){
+                document.getElementById("cuadrov43").style.backgroundColor = "blue";
+            }
+            else if (v43 == "Obturacion"){
+                document.getElementById("cuadrov43").style.backgroundColor = "red";
+            }
+        if (p43 == "Sano"){
+            document.getElementById("cuadrol43").style.backgroundColor = "white";
+            }
+            else if (p43 == "Caries"){
+                document.getElementById("cuadrol43").style.backgroundColor = "blue";
+            }
+            else if (p43 == "Obturacion"){
+                document.getElementById("cuadrol43").style.backgroundColor = "red";
+            };
+        if (o42 == "Sano"){
+            document.getElementById("cuadroo42").style.backgroundColor = "white";
+            }
+            else if (o42 == "Caries"){
+                document.getElementById("cuadroo42").style.backgroundColor = "blue";
+            }
+            else if (o42 == "Obturacion"){
+                document.getElementById("cuadroo42").style.backgroundColor = "red";
+            };
+        if (m42 == "Sano"){
+            document.getElementById("cuadrom42").style.backgroundColor = "white";
+            }
+            else if (m42 == "Caries"){
+                document.getElementById("cuadrom42").style.backgroundColor = "blue";
+            }
+            else if (m42 == "Obturacion"){
+                document.getElementById("cuadrom42").style.backgroundColor = "red";
+            }
+        if (d42 == "Sano"){
+            document.getElementById("cuadrod42").style.backgroundColor = "white";
+            }
+            else if (d42 == "Caries"){
+                document.getElementById("cuadrod42").style.backgroundColor = "blue";
+            }
+            else if (d42 == "Obturacion"){
+                document.getElementById("cuadrod42").style.backgroundColor = "red";
+            }
+        if (v42 == "Sano"){
+            document.getElementById("cuadrov42").style.backgroundColor = "white";
+            }
+            else if (v42 == "Caries"){
+                document.getElementById("cuadrov42").style.backgroundColor = "blue";
+            }
+            else if (v42 == "Obturacion"){
+                document.getElementById("cuadrov42").style.backgroundColor = "red";
+            }
+        if (p42 == "Sano"){
+            document.getElementById("cuadrol42").style.backgroundColor = "white";
+            }
+            else if (p42 == "Caries"){
+                document.getElementById("cuadrol42").style.backgroundColor = "blue";
+            }
+            else if (p42 == "Obturacion"){
+                document.getElementById("cuadrol42").style.backgroundColor = "red";
+            };
+        if (o41 == "Sano"){
+            document.getElementById("cuadroo41").style.backgroundColor = "white";
+            }
+            else if (o41 == "Caries"){
+                document.getElementById("cuadroo41").style.backgroundColor = "blue";
+            }
+            else if (o41 == "Obturacion"){
+                document.getElementById("cuadroo41").style.backgroundColor = "red";
+            };
+        if (m41 == "Sano"){
+            document.getElementById("cuadrom41").style.backgroundColor = "white";
+            }
+            else if (m41 == "Caries"){
+                document.getElementById("cuadrom41").style.backgroundColor = "blue";
+            }
+            else if (m41 == "Obturacion"){
+                document.getElementById("cuadrom41").style.backgroundColor = "red";
+            }
+        if (d41 == "Sano"){
+            document.getElementById("cuadrod41").style.backgroundColor = "white";
+            }
+            else if (d41 == "Caries"){
+                document.getElementById("cuadrod41").style.backgroundColor = "blue";
+            }
+            else if (d41 == "Obturacion"){
+                document.getElementById("cuadrod41").style.backgroundColor = "red";
+            }
+        if (v41 == "Sano"){
+            document.getElementById("cuadrov41").style.backgroundColor = "white";
+            }
+            else if (v41 == "Caries"){
+                document.getElementById("cuadrov41").style.backgroundColor = "blue";
+            }
+            else if (v41 == "Obturacion"){
+                document.getElementById("cuadrov41").style.backgroundColor = "red";
+            }
+        if (p41 == "Sano"){
+            document.getElementById("cuadrol41").style.backgroundColor = "white";
+            }
+            else if (p41 == "Caries"){
+                document.getElementById("cuadrol41").style.backgroundColor = "blue";
+            }
+            else if (p41 == "Obturacion"){
+                document.getElementById("cuadrol41").style.backgroundColor = "red";
+            };
+            
+        
+        
+};
+       
+</script>
+<script>
+    //Validacion de entrada de datos
+    //Relacion Molar}
+        
+        if (rmolar.value == "1"){
+            document.getElementById("clasemolar").value = "Clase 1"
+            document.getElementById("clasemolar").style.backgroundColor = "green";
+            }
+            else if (rmolar.value == "2"){
+                document.getElementById("clasemolar").value = "Clase 2"
+                document.getElementById("clasemolar").style.backgroundColor = "yellow";
+            }
+            else if (rmolar.value == "3"){
+                document.getElementById("clasemolar").value = "Clase 3"
+                document.getElementById("clasemolar").style.backgroundColor = "yellow";
+            };
+    //Relacion Canina
+        if (rcanina.value == "1"){
+            document.getElementById("clasecanina").value = "Clase 1"
+            document.getElementById("clasecanina").style.backgroundColor = "green";
+            }
+            else if (rcanina.value == "2"){
+                document.getElementById("clasecanina").value = "Clase 2"
+                document.getElementById("clasecanina").style.backgroundColor = "yellow";
+            }
+            else if (rcanina.value == "3"){
+                document.getElementById("clasecanina").value = "Clase 3"
+                document.getElementById("clasecanina").style.backgroundColor = "yellow";
+            };
+    //Angulo Interincisivo
+        if (anginter.value >= 131 && anginter.value <= 135){
+            document.getElementById("angulointer").value = "Normal"
+            document.getElementById("angulointer").style.backgroundColor = "green";
+            }
+            else if (anginter.value < 130){
+                document.getElementById("angulointer").value = "Mordida Abierta"
+                document.getElementById("angulointer").style.backgroundColor = "yellow";
+            }
+            else if (rcanina.value > 140){
+                document.getElementById("angulointer").value = "Mordida Cerrada"
+                document.getElementById("angulointer").style.backgroundColor = "yellow";
+            };
+     //Convexidad
+        if (convexidad.value >= "0" && convexidad.value <= "2"){
+            document.getElementById("convex").value = "Clase 1"
+            document.getElementById("convex").style.backgroundColor = "green";
+            }
+            else if (convexidad.value > "2"){
+                document.getElementById("convex").value = "Clase 2"
+                document.getElementById("convex").style.backgroundColor = "yellow";
+            }
+            else if (convexidad.value < "0"){
+                document.getElementById("convex").value = "Clase 3"
+                document.getElementById("convex").style.backgroundColor = "yellow";
+            };
+    //Altura Facial Inferior
+    alturafa = document.getElementById("alturafacialinferior").value
+    if (alturafa >= "43" && alturafa <= "51"){
+            document.getElementById("alturafac").value = "Normocefalico"
+            document.getElementById("alturafac").style.backgroundColor = "green";
+            }
+            else if (alturafa > "51"){
+                document.getElementById("alturafac").value = "Mordida Abierta"
+                document.getElementById("alturafacial").style.backgroundColor = "yellow";
+            }
+            else if (alturafa < "43"){
+                document.getElementById("alturafac").value = "Mordida Cerrada"
+                document.getElementById("alturafac").style.backgroundColor = "yellow";
+            };
+    //Profundidad Facial
+    if (pfacial.value >= "85" && pfacial.value <= "87"){
+            document.getElementById("profacial").value = "Normal"
+            document.getElementById("profacial").style.backgroundColor = "green";
+            }
+            else if (pfacial.value > "87"){
+                document.getElementById("profacial").value = "Clase 3 Mandibular"
+                document.getElementById("profacial").style.backgroundColor = "yellow";
+            }
+            else if (pfacial.value < "85"){
+                document.getElementById("profacial").value = "Clase 2 Mandibular"
+                document.getElementById("profacial").style.backgroundColor = "yellow";
+            };
+    //Eje Facial
+    if (ejefacial.value >= "86,5" && ejefacial.value <= "93,5"){
+            document.getElementById("ejefac").value = "Normal"
+            document.getElementById("ejefac").style.backgroundColor = "green";
+            }
+            else if (pfacial.value > "93,5"){
+                document.getElementById("ejefac").value = "Clase 3 Mandibular"
+                document.getElementById("ejefac").style.backgroundColor = "yellow";
+            }
+            else if (pfacial.value < "86,5"){
+                document.getElementById("ejefac").value = "Clase 2 Mandibular"
+                document.getElementById("ejefac").style.backgroundColor = "yellow";
+            };
+    //Angulo del Plano Mandibular
+    angpmandibular = document.getElementById("angplanomandibular")
+    if (angpmandibular >= "21,5" && angpmandibular <= "30,5"){
+            document.getElementById("angplano").value = "Normal"
+            document.getElementById("angplano").style.backgroundColor = "green";
+            }
+            else if (angpmandibular > "30,5"){
+                document.getElementById("angplano").value = "Mordida Abierta"
+                document.getElementById("angplano").style.backgroundColor = "yellow";
+            }
+            else if (angpmandibular < "21,5"){
+                document.getElementById("angplano").value = "Mordida Cerrada"
+                document.getElementById("angplano").style.backgroundColor = "yellow";
+            };
+    //Profundidad Maxilar
+    if (pmaxilar.value >= "87" && pmaxilar.value <= "93"){
+            document.getElementById("profundidadmaxilar").value = "Normal"
+            document.getElementById("profundidadmaxilar").style.backgroundColor = "green";
+            }
+            else if (pmaxilar.value > "93"){
+                document.getElementById("profundidadmaxilar").value = "Protrusion Maxilar"
+                document.getElementById("profundidadmaxilar").style.backgroundColor = "yellow";
+            }
+            else if (pmaxilar.value < "87"){
+                document.getElementById("profundidadmaxilar").value = "Retrusion Maxilar"
+                document.getElementById("profundidadmaxilar").style.backgroundColor = "yellow";
+            };
+    //Altura Maxilar
+    if (amaxilar.value >= "50" && amaxilar.value <= "56"){
+            document.getElementById("alturamaxilar").value = "Normal"
+            document.getElementById("alturamaxilar").style.backgroundColor = "green";
+            }
+            else if (amaxilar.value > "56"){
+                document.getElementById("alturamaxilar").value = "Mordida Abierta Maxilar"
+                document.getElementById("alturamaxilar").style.backgroundColor = "yellow";
+            }
+            else if (amaxilar.value < "50"){
+                document.getElementById("alturamaxilar").value = "Mordida Cerrada Maxilar"
+                document.getElementById("alturamaxilar").style.backgroundColor = "yellow";
+            };
+    //Protrusion Labial
+    prolabial = document.getElementById("protrusionlabial").value
+    if (prolabial >= "0" && prolabial >= "-2"){
+            document.getElementById("protrusionlabial").value = "Normal"
+            document.getElementById("protrusionlabial").style.backgroundColor = "green";
+            }
+            else if (prolabial > "0"){
+                document.getElementById("protrusionlabial").value = "Protrusion Labial"
+                document.getElementById("protrusionlabial").style.backgroundColor = "yellow";
+            }
+            else if (prolabial > -2){
+                document.getElementById("protrusionlabial").value = "Retrusion Labial"
+                document.getElementById("protrusionlabial").style.backgroundColor = "yellow";
+            };
+    console.log(pfacial.value)
+          
+</script>
+
+
+</body>
+</html>
